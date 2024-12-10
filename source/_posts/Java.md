@@ -26,7 +26,9 @@ ArrayList
 
 Comparator<Type>接口,重写compare方法进行使用,ArrayList.sort(list,Comparator<type>)
 
+compareTo(Object o){}
 
+![image-20241210172404281](/Users/liutao/Library/Application Support/typora-user-images/image-20241210172404281.png)
 
 ### static(修饰词)
 
@@ -242,3 +244,66 @@ public default 返回值类型 方法名(){}
 
 new 类名(){方法重写};
 
+
+
+### 集合
+
+#### Map
+
+put//添加，覆盖,返回覆盖的值
+
+remove
+
+containskey
+
+containvalue
+
+clear
+
+#### 遍历
+
+Set<String> keys = map.keySet();
+
+map.get(key);
+
+
+
+map.entrySet();
+
+//键值对
+
+#### HashMap
+
+![image-20241210154828375](/Users/liutao/Library/Application Support/typora-user-images/image-20241210154828375.png)
+
+HashMap源码
+
+
+
+#### LinkedHashMap
+
+(双向链表记录顺序)
+
+#### TreeMap
+
+按指定的顺序规则进行排序。
+
+#### 可变参数
+
+最多只有一个可变参数，只能写在最后
+
+int...args（本质上是数组）
+
+#### Collections
+
+Java.util.collections集合工具类
+
+##### 批量添加元素
+
+addAll()
+
+Collections.addAll(list ,elements 1,elements 2,...)
+
+##### 打乱List集合元素顺序
+
+Collections.Shuffle(list)
