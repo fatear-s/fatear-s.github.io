@@ -244,11 +244,47 @@ public default 返回值类型 方法名(){}
 
 new 类名(){方法重写};
 
+### 泛型
 
+<type>
+
+限定集合类型
+
+伪泛型。内部存储依旧是Object,取出来的时候强转相应的类型
+
+泛型不能基本类型，只能写包装类
+
+写在
+
+#### 泛型类
+
+类名<类型>
+
+#### 泛型方法
+
+修饰符 <类型>返回值类型 方法名(类型 变量名){}
+
+#### 泛型接口
+
+修饰符 interface 接口名<E>{}
+
+实现时给定类型,或者实现类继承泛型.
+
+泛型不具备继承性。想要限定类型的范围(继承),使用?
+
+方法名(ArrayList<? extend E> list){}//E的子类及其以下
+
+方法名(ArrayList<? super E> list){}//E的父类及以上
+
+### lambda表达式
+
+函数式接口,有且仅有一个抽象方法的接口(抽象类不行)
+
+(参数1,参数2)->{实现方法}
 
 ### 集合
 
-#### Map
+#### Map(双列集合)
 
 put//添加，覆盖,返回覆盖的值
 
@@ -274,7 +310,7 @@ map.entrySet();
 
 #### HashMap
 
-![image-20241210154828375](/Users/liutao/Library/Application Support/typora-user-images/image-20241210154828375.png)
+HashMap的键位置如果存储的是自定义对象，需要重写hashCode和equals方法。
 
 HashMap源码
 
@@ -294,9 +330,37 @@ HashMap源码
 
 int...args（本质上是数组）
 
-#### Collections
+#### Collections(单列集合)
 
-Java.util.collections集合工具类
+(List)(ArrayList,LinkedList)
+
+(Set)(HashSet,TreeSet)
+
+(HashSet)(LinkedHashSet)
+
+Java.util.collections集合工具类,集合顶层接口
+
+#### 遍历
+
+##### 迭代器遍历
+
+不依赖索引.
+
+Iterator<E>  iterator().是Collections中的方法,获取迭代对象
+
+Iter.hasNext();是否还有下一个,返回boolean值
+
+Iter.next();返回下一个.
+
+迭代过程中，不能用集合中增加或者删除，但是可以使用迭代器中的删除。
+
+##### 增强for遍历
+
+底层就是一个迭代器
+
+##### Lambda表达式遍历
+
+coll.forEach()
 
 ##### 批量添加元素
 
@@ -307,3 +371,145 @@ Collections.addAll(list ,elements 1,elements 2,...)
 ##### 打乱List集合元素顺序
 
 Collections.Shuffle(list)
+
+#### 不可变集合
+
+不可修改集合内容
+
+List<String> list = list.of(" "," ");
+
+Set.of()
+
+Map.of()
+
+### Stream流
+
+#### 得到stream流
+
+流会自动关闭，不能使用两次流，使用链式编程
+
+单列集合
+
+List.stream()
+
+双列集合
+
+转换成单列集合,keySet(),entrySet()
+
+数组
+
+零散
+
+调用API
+
+#### 中间方法
+
+filter()过滤
+
+limit(int i )个数
+
+Skip(int i) 跳过几个元素
+
+Distinct()去除重复
+
+Concat()合并流
+
+Map(new Function<String ,Object>)类型转换
+
+#### 终结方法
+
+forEach()遍历
+
+count()统计
+
+toArray()收集数组
+
+collect(Collector.toList())收集集合
+
+```java
+package day05.stream.test02;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Map;
+import java.util.function.Function;
+import java.util.function.Predicate;
+import java.util.stream.Collectors;
+
+public class Main {
+    public static void main(String[] args){
+        /*
+        创建ArrayList添加字符串（zhangsan ,23//lisi,24//wangwua,25）
+        ,保存大于24的人，收集到map
+         */
+        ArrayList<String> list =new ArrayList<>();
+        Collections.addAll(list,"zhangsan,23","lisi,24","wangwu,25");
+
+//        Map<String, Integer> collect = list.stream().filter(s -> Integer.parseInt(s.split(",")[1]) > 24).collect(Collectors.toMap(
+//                new Function<String, String>() {
+//                    @Override
+//                    public String apply(String s) {
+//                        return s.split(",")[0];
+//                    }
+//                },
+//                new Function<String, Integer>() {
+//                    @Override
+//                    public Integer apply(String s) {
+//                        return Integer.parseInt(s.split(",")[1]);
+//                    }
+//                }
+//        ));
+        Map<String, Integer> collect = list.stream().filter(s -> Integer.parseInt(s.split(",")[1]) >= 24).collect(Collectors.toMap(s -> s.split(",")[0], s -> Integer.parseInt(s.split(",")[1])));
+        System.out.println(collect);
+    }
+}
+```
+
+收集成Map是将流上的数据组合成字符串，再对字符串做处理，放入到建和值中
+
+Map()类型转换
+
+```java
+package day05.stream.test03;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.function.Function;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
+public class Main {
+    public static void main(String[] args) {
+        /*
+        两个list集合，第一个集合中，存储6名男人信息（“张三,23”）;第二个存贮6名女人
+        男只要名字长度为3前2名
+        女只要姓"yang"的，不要第一个
+        过滤后合并到一起
+        以上封装成Actor对象
+        将所有人保存到List中
+         */
+        ArrayList<String> boyList = new ArrayList<>();
+        ArrayList<String> girlList = new ArrayList<>();
+        Collections.addAll(boyList, "张三,23", "张三风,14", "李三思,25", "王三一,26", "赵三囍,37", "钱三强,28");
+        Collections.addAll(girlList, "yangyi,34", "wangkeer,12", "dianzhatian,23", "weifangyu,45", "yangyangle,23", "yabngzibo,34");
+
+        boyList.stream().filter(s -> s.split(",")[0].length() == 3).limit(2).forEach(S -> System.out.println(S));
+        girlList.stream().filter(s -> s.split(",")[0].substring(0, 4).equals("yang")).skip(1).forEach(S -> System.out.println(S));
+
+        Stream<String> boyStream = boyList.stream().filter(s -> s.split(",")[0].length() == 3).limit(2);
+        Stream<String> girlStream = girlList.stream().filter(s -> s.split(",")[0].substring(0, 4).equals("yang")).skip(1);
+        Stream<String> aggrStream = Stream.concat(boyStream, girlStream);
+
+        //aggrStream.forEach(System.out::println);
+
+        List<Actor> collect = aggrStream.map(
+                s -> new Actor(s.split(",")[0], Integer.parseInt(s.split(",")[1]))
+        ).collect(Collectors.toList());
+
+        System.out.println(collect);
+    }
+}
+```
+
