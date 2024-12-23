@@ -64,6 +64,8 @@ static 注意事项
 
 静态方法只能访问静态变量
 
+`this` 引用的是当前对象的实例，而静态方法与类本身关联，不依赖于任何特定的对象实例。因此，静态方法并不需要 `this` 来访问，调用它时不需要实例对象。
+
 
 
 ### 继承
@@ -469,7 +471,7 @@ public class Main {
 
 Map()类型转换
 
-```java
+```
 package day05.stream.test03;
 
 import java.util.ArrayList;
@@ -495,21 +497,357 @@ public class Main {
         Collections.addAll(boyList, "张三,23", "张三风,14", "李三思,25", "王三一,26", "赵三囍,37", "钱三强,28");
         Collections.addAll(girlList, "yangyi,34", "wangkeer,12", "dianzhatian,23", "weifangyu,45", "yangyangle,23", "yabngzibo,34");
 
-        boyList.stream().filter(s -> s.split(",")[0].length() == 3).limit(2).forEach(S -> System.out.println(S));
-        girlList.stream().filter(s -> s.split(",")[0].substring(0, 4).equals("yang")).skip(1).forEach(S -> System.out.println(S));
+​        boyList.stream().filter(s -> s.split(",")[0].length() == 3).limit(2).forEach(S -> System.out.println(S));
+​        girlList.stream().filter(s -> s.split(",")[0].substring(0, 4).equals("yang")).skip(1).forEach(S -> System.out.println(S));
 
-        Stream<String> boyStream = boyList.stream().filter(s -> s.split(",")[0].length() == 3).limit(2);
-        Stream<String> girlStream = girlList.stream().filter(s -> s.split(",")[0].substring(0, 4).equals("yang")).skip(1);
-        Stream<String> aggrStream = Stream.concat(boyStream, girlStream);
+​        Stream<String> boyStream = boyList.stream().filter(s -> s.split(",")[0].length() == 3).limit(2);
+​        Stream<String> girlStream = girlList.stream().filter(s -> s.split(",")[0].substring(0, 4).equals("yang")).skip(1);
+​        Stream<String> aggrStream = Stream.concat(boyStream, girlStream);
 
-        //aggrStream.forEach(System.out::println);
+​        //aggrStream.forEach(System.out::println);
 
-        List<Actor> collect = aggrStream.map(
-                s -> new Actor(s.split(",")[0], Integer.parseInt(s.split(",")[1]))
-        ).collect(Collectors.toList());
+​        List<Actor> collect = aggrStream.map(
+​                s -> new Actor(s.split(",")[0], Integer.parseInt(s.split(",")[1]))
+​        ).collect(Collectors.toList());
 
-        System.out.println(collect);
-    }
+​        System.out.println(collect);
+​    }
 }
 ```
+
+
+
+### 方法引用
+
+要求
+
+1、引用处必须是函数式接口
+
+2、被引用方法必须已经存在
+
+3、被引用方法的形参和返回值需要和抽象方法保持一致（类::method注意被引用的方法形参是跟第二个参数后面的保持一致）
+
+静态方法引用 格式: class::method
+
+成员方法引用 格式: new class()::method，如果引用流中数据类成员方法(class::methed)，如果是其他类(对象::method)
+
+本类引用 this::method
+
+父类引用super::method
+
+构造方法引用class::new
+
+### 异常
+
+#### error
+
+严重错误，系统级别错误。
+
+#### exception
+
+异常，可能出现的问题
+
+##### runtimeexception
+
+编译不会出现问题，但在运行时会产生错误。（本身及其子类               ）
+
+##### 编译异常
+
+编译时就出现的错误。
+
+### File
+
+成员方法
+
+获取并遍历
+
+File[] listFiles();
+
+### IO流
+
+字节流：操作所有类型的文件
+
+字符流：操作纯文本文件
+
+#### FileOutputStream
+
+父级路径必须存在，存在文件会清空文件内容
+
+##### 写入
+
+Write(byte b)
+
+wrtie(byte[] b)
+
+//byte[]  = String.getbytes();//得到字节流
+
+![image-20241217203923457](/Users/liutao/Library/Application Support/typora-user-images/image-20241217203923457.png)
+
+续写,fileoutputstream(str,append=true)
+
+释放资源close()
+
+#### FileinputStream
+
+Read()//读不到返回-1
+
+循环读取
+
+```java
+FileInputStream fis = FileInputStream("path");
+int b;
+while((b=fis.read())!=-1){
+	System.out.print(b);
+}
+fis.close();
+
+```
+
+文件拷贝
+
+释放资源，先开后释放
+
+多字节读取
+
+```java
+int len;
+byte[] bytes = new byte[len];
+int lenRead = fis.read(bytes);
+```
+
+### 字符集
+
+GBK
+
+2字节存储，高位字节二进制1为开头（英文开头是0）区分
+
+兼容ASCII
+
+unicode
+
+（utf-16,utf-32）
+
+utf-8编码规则（1-4个字节）
+
+ASCII 1一个字节
+
+简体中文 3个字节
+
+![image-20241219155426656](/Users/liutao/Library/Application Support/typora-user-images/image-20241219155426656.png)
+
+(首位一定是1)
+
+
+
+不要用字节流读取文本文件
+
+getBytes()使用默认方式编码
+
+getBytes(String charsetName) 使用指定的方式进行编码
+
+String(byte[] bytes,String charsetName) 使用指定方式进行解码
+
+
+
+### 字符流
+
+字符流 = 字节流+字符集
+
+#### 输入流Reader
+
+FileReader fr
+
+Fr.read()底层
+
+按字符集读取
+
+解码转成十进制数
+
+需要强转(char) chr
+
+```java
+FileReader fr = new FileReader("");
+int ch;
+while((ch = fr.read())!=-1){
+	System.out.print((char)ch);
+}
+```
+
+注意有参数的read()
+
+读取数据，解码，十进制强转，放到数组中
+
+read()中有缓冲区,(8192字节).
+
+```java
+FileReader fr = new FileReader();
+fr.read();
+//创建缓冲区
+FileReader fr1 = new FileReader();
+//文件数据被清空
+int ch;
+
+while((ch = fr.read())!=-1){
+	System.out.println((char)ch);
+}
+
+//能够读取到缓冲区的数据，但是无法读取文件数据,只会清空文件数据，但是不会清空缓冲区数据
+```
+
+#### 输出流Writer
+
+FileWriter
+
+FileWriter(String pasth,boolean append)续写
+
+字节流没有缓冲区，但是字符流有缓冲区
+
+缓冲区写入文件3种情况
+
+缓冲区满了//刷新flush()//close()
+
+### 缓冲流
+
+![image-20241223153411523](/Users/liutao/Library/Application Support/typora-user-images/image-20241223153411523.png)
+
+#### 字节缓冲流
+
+```java
+BufferInputStream bis = new BufferInputStream(new FileInputStream());
+BufferOutputStream bos = new BufferOutputStream(new FileOutputStream());
+
+byte[] bytes = new byte[1024];
+int len;
+while((len = bis.read())!=-1){
+	bos.write(bytes,0,len);
+}
+bis.close();
+bos.close();
+//缓冲区是磁盘读到内存的缓存（磁盘->内存），byte[1024]则是内存中转手的数据(内存->内存)
+```
+
+![image-20241223155023942](/Users/liutao/Library/Application Support/typora-user-images/image-20241223155023942.png)
+
+### 字符缓冲流
+
+BufferReader(new FileReader());
+
+BufferWriter(new FileWriter());
+
+带有默认的8k的字符的缓冲区
+
+readLine()//无数据返回null，不会保存换行
+
+newLine()跨平台的写入换行
+
+
+
+### 转换流
+
+字符流与字节流的桥梁
+
+![image-20241223163005262](/Users/liutao/Library/Application Support/typora-user-images/image-20241223163005262.png)
+
+```java
+//转换流
+InputStreamReader isr = new InputStreamReader(new FileInputStream(),"GBK");
+
+OutputStreamWriter osw = new OutputStreamWriter(new FileOutputStream(),"UTF-8");
+
+int b;
+while((b= isr.read())!=-1){
+	osw.write(b);
+}
+isr.close();
+osw.close();
+
+//JDK11后,替换方案
+
+FileReader fr = new FileReader(path,Charset.forName("GBK"));
+FileWriter fw = new FileWriter(path,Charset.forName("UTF-8"));
+
+int b;
+while((b=fr.read())!=-1){
+	fw.write(b);
+}
+fr.close();
+fw.close();
+```
+
+字节流想要使用字符流中的方法
+
+```java
+//使用字符流readline()读取一整行字节流
+BfferReader bf = new BufferReader(new InputStreamReader(new FileInputStream(path)));
+
+String line;
+while((line = bf.readline())!=null){
+	System.out.println(line);
+}
+bf.close();
+```
+
+### 序列化流
+
+字节流的一种
+
+java对象写入到本地文件
+
+Serializable//没有抽象方法的接口，标志性接口，标志该类可以被序列化
+
+```java
+ObiectOutputStreram oos = new ObjectOutputStream(FileOutputStream(path));
+oos.writeObject(new Student("",""));
+oos.close();
+```
+
+
+
+### 反序列化流
+
+```java
+ObjectInputStream ois = new ObjectInputStream(new FileInputStream(path));
+
+Student stu = (Student) ois.readObject();
+
+ois.close();
+
+
+```
+
+
+
+如果javaBean发生修改，增加版本号
+
+```java
+//在javaBean中增加版本号
+private static final long serialVersionUID = 1L;
+//设定部分参数不能够序列化,添加瞬态关键字
+public transient String address;
+```
+
+
+
+多次写入和读取对象，注意封装到ArrayList中
+
+```java
+ObjectOutputStream oos =new ObjcetOutputStrem(new FileOutputStream(path));
+
+//封装
+ArrayList<Student> list = new ArrayList<>();
+list.add(new Student);
+list.add(new Student);
+
+oos.writeObject(list);
+oos.close();
+//读取
+
+ObjectInputStream ois = new ObjectInputStream(new FileInputStream(path));
+
+ArrayList<Student> listRead = (ArrayList<Student>)ois.read;Object();
+
+ois.close();
+```
+
+### 打印流
 
