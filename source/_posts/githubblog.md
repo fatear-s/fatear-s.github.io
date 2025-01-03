@@ -109,6 +109,8 @@ Host github.com
 
 ```
 
+链接：https://blog.csdn.net/CoolBoySilverBullet/article/details/135736862
+
 ### HEXO g -d失败
 
 ```bash
@@ -122,3 +124,4 @@ git config --global core.autocrlf false
 hexo clean && hexo g && hexo d
 ```
 
+链接：https://zhuanlan.zhihu.com/p/648369159
