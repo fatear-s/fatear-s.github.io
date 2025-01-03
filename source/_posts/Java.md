@@ -471,7 +471,7 @@ public class Main {
 
 Map()类型转换
 
-```
+```java
 package day05.stream.test03;
 
 import java.util.ArrayList;
@@ -565,9 +565,9 @@ File[] listFiles();
 
 ### IO流
 
-字节流：操作所有类型的文件
+字节流：操作所有类型的文件(拷贝使用场景)
 
-字符流：操作纯文本文件
+字符流：操作纯文本文件(读取纯文本文件中的数据，往纯文本文件中写入)
 
 #### FileOutputStream
 
@@ -844,10 +844,359 @@ oos.close();
 
 ObjectInputStream ois = new ObjectInputStream(new FileInputStream(path));
 
-ArrayList<Student> listRead = (ArrayList<Student>)ois.read;Object();
+ArrayList<Student> listRead = (ArrayList<Student>)ois.readObject();
 
 ois.close();
 ```
 
 ### 打印流
+
+#### printStream
+
+ write
+
+//数据远洋输出//写出+自动刷新+自动换行
+
+print
+
+println
+
+printf
+
+（System.out就是一个打印流）
+
+#### printWriter
+
+有缓冲区，自动刷新需要手动开启
+
+### 解压缩流
+
+```java
+File src = new File(path);
+File dest =new File(path);
+zipinputStream zip = new zipInputStream(new FileInputStream(src));
+
+zipEntry entry;
+while((entry = zip.getEntry())!=null){
+	System.out.print(entry);
+	if(entry.isDirectory()){
+		File file = new File(dest,entry.toString());
+		file.mkdir();
+	}else{
+		//读取文件数据
+		FileOutputStream fos = new FileOutputStream(new File(dest,entry,toString()));
+		byte[] bytes = new byte[1024];
+		int len;
+		while((len=zip.read())!=-1){
+			fos.write(bytes,0,len);
+		}
+		fos.close();
+		//表示一个文件读取完毕
+		fos.closeEntry();
+	}
+}
+zip.clsoe();
+```
+
+### 压缩流
+
+```java
+File src = new File(path);
+File destParent = new File(pathParent);
+File dest = new File(destParent,src.getName()+".zip");
+
+zipOutputStream zos = new zipOutputStream(new FileOutputStram(dest));
+//获取src中文件，变成zipEntry对象，放入压缩包中(需递归)
+zip.clsoe();
+
+public static void toZip(File src ,ZipOutputStream zos,String name){
+	File[] filelist = src.listFiles();
+	for(File file:filelist){
+		if(file.isFile()){
+			ZipEntry entry = new ZipEntry(name + "\\" + file.getName());
+			//创建压缩包中的文件结构
+			zos.putNextEntry(entry);
+			//写入
+			FileInputStream fis = enw FileInputStream(file);
+			byte[] bytes = new byte[1024];
+			int len;
+			while((len = fis.read(bytes))!=-1){
+				zos.write(bytes,0,len);
+			}
+			fis.close();
+			zos.closeEntry();
+	}else{
+		//是文件
+		toZip(file,zos,name+"\\"+file.getName());
+	}
+	}
+	zos.close()
+}
+
+
+
+```
+
+### Commons-io
+
+jar包
+
+![image-20241224160534486](/Users/liutao/Library/Application Support/typora-user-images/image-20241224160534486.png)
+
+#### FileUtils
+
+copyFile
+
+readFileToString
+
+#### IOUtils
+
+### Hutool
+
+### 多线程
+
+#### 多线程实现
+
+##### 继承Thread
+
+重写run()方法
+
+Run()中书写运行代码
+
+```java
+//线程类MyThread extend Thread
+MyThread t1 = new MyThread();
+t1.start();
+```
+
+
+
+##### 实现Runnable接口实现多线程
+
+重写其中的run方法
+
+```java
+//MyRun implements Runnable
+//获取当前线程对象currentThread()
+```
+
+
+
+##### 
+
+可以获取线程执行后的返回值
+
+```java
+public class MyCallable implements Callable<Integer>{
+	public Integer call() {
+		//run code;
+	}
+}
+
+//创建多线程参数,Callable表示多线程执行的任务的数据参数
+MyCallable myCall =new MyCallable();
+//创建FutureTask对象(管理多线程运行结果)
+FutureTask<Integer> ft = new FutureTask<>(myCall);
+//创建线程的对象
+Thread t = new Thread();
+t.start();
+//获取实验结果
+Integer result = t.get();
+```
+
+
+
+##### 总结
+
+![image-20241231170316032](/Users/liutao/Library/Application Support/typora-user-images/image-20241231170316032.png)
+
+###### 常见的成员方法
+
+```java
+getName()
+setName()//也可以使用MyThread重写Thread的构造方法
+currentThread()//获取当前线程对象，当JVM启动，便会有main线程
+sleep(long time)//线程休眠
+setPriority(int newPriority)//设置优先级
+final int newPriority()//获取优先级
+setDaemon()//设置守护进程
+yield()//出让进程
+join()//插入进程
+
+
+```
+
+（无法抛出父类没有的异常，只能够使用try）
+
+##### 优先级
+
+优先级是一个概率问题
+
+##### 守护线程
+
+当非守护进程结束后，守护进程也结束了
+
+#### 线程声明周期
+
+![image-20241231205234338](/Users/liutao/Library/Application Support/typora-user-images/image-20241231205234338.png)
+
+#### 安全问题-同步问题
+
+锁
+
+```java
+static Object obj = new Object();//锁对象必须是唯一static
+//一般锁对象使用class字节码文件对象
+public void run(){
+	synchronized(MyThread.class){
+		//run code
+	}
+}
+```
+
+#### 同步方法
+
+![image-20241231211501900](/Users/liutao/Library/Application Support/typora-user-images/image-20241231211501900.png)
+
+```
+
+```
+
+
+
+#### 锁
+
+Lock接口,实现类ReentrantLock
+
+```java
+static public Lock lock =new ReentrantLock();
+public void run(){
+	lock.lock();
+  try{
+    //code
+  }catch{
+    //error
+  }finally{
+    lock.unlock();
+  }
+}
+```
+
+##### 死锁
+
+不要写嵌套锁
+
+### 等待唤醒机制
+
+### 线程的状态
+
+![image-20250102135028873](/Users/liutao/Library/Application Support/typora-user-images/image-20250102135028873.png)
+
+JVM中定义的状态
+
+![image-20250102135300146](/Users/liutao/Library/Application Support/typora-user-images/image-20250102135300146.png)
+
+### 线程池
+
+线程复用，一个线程执行完毕，使用存在的线程运行当前线程
+
+如果线程池中没有空闲的线程，则创建新的线程，没有足够的线程额，线程就排队等待
+
+#### ExecutorService
+
+#### 自定义线程池
+
+![image-20250102143328266](/Users/liutao/Library/Application Support/typora-user-images/image-20250102143328266.png)
+
+##### 最大并行数
+
+4核心8线程，8个逻辑处理器，并行数8
+
+![image-20250102144349598](/Users/liutao/Library/Application Support/typora-user-images/image-20250102144349598.png)
+
+thread dump 计算总时间/cpu计算时间
+
+
+
+### 网络编程
+
+cs/bs
+
+cs本地数据，提供更好的画面
+
+bs维护简单，本地没有数据
+
+
+
+IP：设备在网络中的地址
+
+端口：程序在设备中的唯一标识
+
+协议：数据传输的规则
+
+
+
+#### IP
+
+IPV4
+
+IPV6
+
+![image-20250102150239409](/Users/liutao/Library/Application Support/typora-user-images/image-20250102150239409.png)
+
+公网IP,局域网IP
+
+168.192.0.0局域网ip
+
+##### InetAddress
+
+#### 端口
+
+0~65535
+
+0~1023是知名程序使用的端口ftp
+
+#### 协议
+
+TCP
+
+UDP
+
+#### UDP
+
+单播
+
+组播224.0.0.0~239.255.255.255
+
+广播：255.255.255.255
+
+### 反射
+
+反射允许对成员变量，成员方法，构造方法的信息进行编程访问
+
+获取class对象的三种方式
+
+1、Class.forName() 源代码阶段 Class.forName("包名+类名")
+
+2、类名.class 加载阶段
+
+3、对象.getClass() 运行阶段
+
+![image-20250102165312312](/Users/liutao/Library/Application Support/typora-user-images/image-20250102165312312.png)
+
+
+
+![image-20250102200453645](/Users/liutao/Library/Application Support/typora-user-images/image-20250102200453645.png)
+
+
+
+![image-20250102200517326](/Users/liutao/Library/Application Support/typora-user-images/image-20250102200517326.png)
+
+![image-20250102200812716](/Users/liutao/Library/Application Support/typora-user-images/image-20250102200812716.png)
+
+### 动态代理
+
+类加载器：将class文件加载到内存中classLoader()
+
+?
 
