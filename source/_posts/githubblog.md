@@ -94,3 +94,31 @@ git config --global https.proxy http://127.0.0.1:7890
 ### 下载hexo 提交工具连接问题
 
 需要关闭系统代理或者设置系统代理
+
+### 突然出现上传不了github的情况
+
+疑似出现代理配置问题
+
+在 `~/.ssh/config` 文件中添加下面的配置
+
+```bash
+Host github.com
+    Hostname ssh.github.com
+    Port 443
+    User git
+
+```
+
+### HEXO g -d失败
+
+```bash
+## 进入你的博客根目录
+cd /usr/hexo/
+## 删除git提交内容文件夹
+rm -rf .deploy_git/
+## 执行下句
+git config --global core.autocrlf false
+## 重新部署
+hexo clean && hexo g && hexo d
+```
+
