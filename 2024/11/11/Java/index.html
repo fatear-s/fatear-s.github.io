@@ -1,0 +1,1065 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Fatear">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="JavaPointString1&quot;-&quot;.repeat(count)    容器不能存基本数据类型，只能存引用数据类型和包装类 ArrayList 泛型 Comparator接口,重写compare方法进行使用,ArrayList.sort(list,Comparator) compareTo(Object o){} ![image-20241210172404281](&amp;#x2">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java">
+<meta property="og:url" content="http://example.com/2024/11/11/Java/index.html">
+<meta property="og:site_name" content="Fatear Blog">
+<meta property="og:description" content="JavaPointString1&quot;-&quot;.repeat(count)    容器不能存基本数据类型，只能存引用数据类型和包装类 ArrayList 泛型 Comparator接口,重写compare方法进行使用,ArrayList.sort(list,Comparator) compareTo(Object o){} ![image-20241210172404281](&amp;#x2">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-11-11T04:17:16.164Z">
+<meta property="article:modified_time" content="2025-01-02T13:36:41.398Z">
+<meta property="article:author" content="Fatear">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>Java - Fatear Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":"8eBbLlW8ZXk3Rr4j6ffVhWep-gzGzoHsz","app_key":"1IVnS6tLIcO5nGFjzaJqhgNJ","server_url":"https://8ebbllw8.lc-cn-n1-shared.com","path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Fatear</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Java"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-11-11 12:17" pubdate>
+          2024年11月11日 中午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          4.5k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          38 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> 次
+        </span>
+        
+      
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">Java</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="Java"><a href="#Java" class="headerlink" title="Java"></a>Java</h1><h2 id="Point"><a href="#Point" class="headerlink" title="Point"></a>Point</h2><h3 id="String"><a href="#String" class="headerlink" title="String"></a>String</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-string">&quot;-&quot;</span>.repeat(count)<br></code></pre></td></tr></table></figure>
+
+
+
+<h3 id="容器"><a href="#容器" class="headerlink" title="容器"></a>容器</h3><p>不能存基本数据类型，只能存引用数据类型和包装类</p>
+<p>ArrayList</p>
+<p>泛型<Type></p>
+<p>Comparator<Type>接口,重写compare方法进行使用,ArrayList.sort(list,Comparator<type>)</p>
+<p>compareTo(Object o){}</p>
+<p>![image-20241210172404281](&#x2F;Users&#x2F;liutao&#x2F;Library&#x2F;Application Support&#x2F;typora-user-images&#x2F;image-20241210172404281.png)</p>
+<h3 id="static-修饰词"><a href="#static-修饰词" class="headerlink" title="static(修饰词)"></a>static(修饰词)</h3><p>变量：相同类型不同对象之间的数据共享</p>
+<p>public static int a;</p>
+<p>可以类名调用</p>
+<p>内存：堆中，静态区</p>
+<p>类内存分配（字节码到方法区）</p>
+<p>![image-20241111121638273](&#x2F;Users&#x2F;liutao&#x2F;Library&#x2F;Application Support&#x2F;typora-user-images&#x2F;image-20241111121638273.png)</p>
+<p>方法：</p>
+<p>javabean类</p>
+<p>描述一类事物</p>
+<p>测试类</p>
+<p>带有main方法，用于测试</p>
+<p>工具类</p>
+<p>帮助实现的工具，Math等（私有化构造方法）</p>
+<p>工具类就使用static修饰词</p>
+<p>static 注意事项</p>
+<p>静态方法只能访问静态变量</p>
+<p><code>this</code> 引用的是当前对象的实例，而静态方法与类本身关联，不依赖于任何特定的对象实例。因此，静态方法并不需要 <code>this</code> 来访问，调用它时不需要实例对象。</p>
+<h3 id="继承"><a href="#继承" class="headerlink" title="继承"></a>继承</h3><p>class Student extends Person{}</p>
+<p>默认父类:Object()</p>
+<p>子类能继承父类</p>
+<p>构造方法不能继承</p>
+<p>this.name 本类</p>
+<p>super.name 父类</p>
+<p>this,super 都符合就近原则，本类找不到就父类找，直到找到</p>
+<p>成员变量</p>
+<p>private 继承但不可直接使用</p>
+<p>成员方法</p>
+<p>虚方法表（非private，非static，非final）继承</p>
+<p>内存分析工具</p>
+<p>jps  查看类的ID</p>
+<p>jhsdb 内存查看</p>
+<p>重新，就是覆盖虚方发表中的方法。</p>
+<p>父类构造方法</p>
+<p>Super()父类无参构造，可以有参构造</p>
+<p>this()本类构造方法</p>
+<p>类的基本方法，ClassLayout.praseInstance(calss s )</p>
+<h3 id="多态"><a href="#多态" class="headerlink" title="多态"></a>多态</h3><p>子类对象赋值给父类引用</p>
+<p>继承关系</p>
+<p>父类引用</p>
+<p>方法重写</p>
+<p>Person  p &#x3D; new Student()</p>
+<p>成员变量，与成员方法区别：</p>
+<p>成员变量没有重写这一个说法，就近原则，而成员方法会调用子类重写的方法。</p>
+<p>编译的时候看父类的声明，父类没有就报错</p>
+<p>成员变量，编译看左边，运行看左边</p>
+<p>成员方法，编译看左边，运行看右边</p>
+<p>使用：</p>
+<p>定义方法，传入参数是父类，就可以接受所有子类的传入</p>
+<p>类型强制转换</p>
+<p>(Student) p;</p>
+<p>判断引用是不是某类型</p>
+<p>引用 instanceof type</p>
+<p>引用 instanceof type 引用1</p>
+<h3 id="包"><a href="#包" class="headerlink" title="包"></a>包</h3><p>包就是文件夹</p>
+<p>package 包名;</p>
+<p>不需要导入包：1同一个包中的类。2Java.lang包中的类</p>
+<h3 id="final"><a href="#final" class="headerlink" title="final"></a>final</h3><p>修饰方法</p>
+<p>不能够重写</p>
+<p>修饰类</p>
+<p>不能够被继承</p>
+<p>修饰变量</p>
+<p>变量只能够被赋值一次</p>
+<p>![image-20241113101959831](&#x2F;Users&#x2F;liutao&#x2F;Library&#x2F;Application Support&#x2F;typora-user-images&#x2F;image-20241113101959831.png)</p>
+<p>修饰引用数据类型</p>
+<p>地址不能够变</p>
+<p>![image-20241113102927823](&#x2F;Users&#x2F;liutao&#x2F;Library&#x2F;Application Support&#x2F;typora-user-images&#x2F;image-20241113102927823.png)</p>
+<h3 id="代码块"><a href="#代码块" class="headerlink" title="代码块"></a>代码块</h3><p>{}</p>
+<h4 id="局部代码块（淘汰）"><a href="#局部代码块（淘汰）" class="headerlink" title="局部代码块（淘汰）"></a>局部代码块（淘汰）</h4><p>提前结束变量的生命周期</p>
+<h4 id="构造代码块-淘汰"><a href="#构造代码块-淘汰" class="headerlink" title="构造代码块(淘汰)"></a>构造代码块(淘汰)</h4><p>构造方法中重复的代码,写在成员位置代码块</p>
+<h4 id="静态代码块"><a href="#静态代码块" class="headerlink" title="静态代码块"></a>静态代码块</h4><p>Static{}</p>
+<p>只执行一次</p>
+<p>类加载时，执行一些代码块</p>
+<h3 id="抽象类和抽象方法"><a href="#抽象类和抽象方法" class="headerlink" title="抽象类和抽象方法"></a>抽象类和抽象方法</h3><p>public abstract class </p>
+<h3 id="接口"><a href="#接口" class="headerlink" title="接口"></a>接口</h3><p>行为的抽象</p>
+<p>public interface 接口名{}</p>
+<p>public class 类名 implements 接口名1,接口名2{}</p>
+<p>接口成员变量，只能够是常量</p>
+<p>构造方法，无</p>
+<p>成员方法，jdk7 只能够抽象方法</p>
+<p>（类中得我接口，抽象方法）</p>
+<p>如何抽象出类（自下而上，分类，行为抽取，抽取接口）</p>
+<p>接口升级的问题</p>
+<p>接口升级，实现类必须全部实现才能执行，但是接口升级的同时，实现的类也需要能够运行。</p>
+<p>默认方法</p>
+<p>非抽象方法，可以不重写</p>
+<p>public default 返回值类型 方法名(){}</p>
+<p>接口中可以有静态方法和私有方法</p>
+<h3 id="内部类"><a href="#内部类" class="headerlink" title="内部类"></a>内部类</h3><p>内部类可以使用外部类的成员，包括私有。</p>
+<h4 id="匿名内部类"><a href="#匿名内部类" class="headerlink" title="匿名内部类"></a>匿名内部类</h4><p>new 类名(){方法重写};</p>
+<h3 id="泛型"><a href="#泛型" class="headerlink" title="泛型"></a>泛型</h3><type>
+
+<p>限定集合类型</p>
+<p>伪泛型。内部存储依旧是Object,取出来的时候强转相应的类型</p>
+<p>泛型不能基本类型，只能写包装类</p>
+<p>写在</p>
+<h4 id="泛型类"><a href="#泛型类" class="headerlink" title="泛型类"></a>泛型类</h4><p>类名&lt;类型&gt;</p>
+<h4 id="泛型方法"><a href="#泛型方法" class="headerlink" title="泛型方法"></a>泛型方法</h4><p>修饰符 &lt;类型&gt;返回值类型 方法名(类型 变量名){}</p>
+<h4 id="泛型接口"><a href="#泛型接口" class="headerlink" title="泛型接口"></a>泛型接口</h4><p>修饰符 interface 接口名<E>{}</p>
+<p>实现时给定类型,或者实现类继承泛型.</p>
+<p>泛型不具备继承性。想要限定类型的范围(继承),使用?</p>
+<p>方法名(ArrayList&lt;? extend E&gt; list){}&#x2F;&#x2F;E的子类及其以下</p>
+<p>方法名(ArrayList&lt;? super E&gt; list){}&#x2F;&#x2F;E的父类及以上</p>
+<h3 id="lambda表达式"><a href="#lambda表达式" class="headerlink" title="lambda表达式"></a>lambda表达式</h3><p>函数式接口,有且仅有一个抽象方法的接口(抽象类不行)</p>
+<p>(参数1,参数2)-&gt;{实现方法}</p>
+<h3 id="集合"><a href="#集合" class="headerlink" title="集合"></a>集合</h3><h4 id="Map-双列集合"><a href="#Map-双列集合" class="headerlink" title="Map(双列集合)"></a>Map(双列集合)</h4><p>put&#x2F;&#x2F;添加，覆盖,返回覆盖的值</p>
+<p>remove</p>
+<p>containskey</p>
+<p>containvalue</p>
+<p>clear</p>
+<h4 id="遍历"><a href="#遍历" class="headerlink" title="遍历"></a>遍历</h4><p>Set<String> keys &#x3D; map.keySet();</p>
+<p>map.get(key);</p>
+<p>map.entrySet();</p>
+<p>&#x2F;&#x2F;键值对</p>
+<h4 id="HashMap"><a href="#HashMap" class="headerlink" title="HashMap"></a>HashMap</h4><p>HashMap的键位置如果存储的是自定义对象，需要重写hashCode和equals方法。</p>
+<p>HashMap源码</p>
+<h4 id="LinkedHashMap"><a href="#LinkedHashMap" class="headerlink" title="LinkedHashMap"></a>LinkedHashMap</h4><p>(双向链表记录顺序)</p>
+<h4 id="TreeMap"><a href="#TreeMap" class="headerlink" title="TreeMap"></a>TreeMap</h4><p>按指定的顺序规则进行排序。</p>
+<h4 id="可变参数"><a href="#可变参数" class="headerlink" title="可变参数"></a>可变参数</h4><p>最多只有一个可变参数，只能写在最后</p>
+<p>int…args（本质上是数组）</p>
+<h4 id="Collections-单列集合"><a href="#Collections-单列集合" class="headerlink" title="Collections(单列集合)"></a>Collections(单列集合)</h4><p>(List)(ArrayList,LinkedList)</p>
+<p>(Set)(HashSet,TreeSet)</p>
+<p>(HashSet)(LinkedHashSet)</p>
+<p>Java.util.collections集合工具类,集合顶层接口</p>
+<h4 id="遍历-1"><a href="#遍历-1" class="headerlink" title="遍历"></a>遍历</h4><h5 id="迭代器遍历"><a href="#迭代器遍历" class="headerlink" title="迭代器遍历"></a>迭代器遍历</h5><p>不依赖索引.</p>
+<p>Iterator<E>  iterator().是Collections中的方法,获取迭代对象</p>
+<p>Iter.hasNext();是否还有下一个,返回boolean值</p>
+<p>Iter.next();返回下一个.</p>
+<p>迭代过程中，不能用集合中增加或者删除，但是可以使用迭代器中的删除。</p>
+<h5 id="增强for遍历"><a href="#增强for遍历" class="headerlink" title="增强for遍历"></a>增强for遍历</h5><p>底层就是一个迭代器</p>
+<h5 id="Lambda表达式遍历"><a href="#Lambda表达式遍历" class="headerlink" title="Lambda表达式遍历"></a>Lambda表达式遍历</h5><p>coll.forEach()</p>
+<h5 id="批量添加元素"><a href="#批量添加元素" class="headerlink" title="批量添加元素"></a>批量添加元素</h5><p>addAll()</p>
+<p>Collections.addAll(list ,elements 1,elements 2,…)</p>
+<h5 id="打乱List集合元素顺序"><a href="#打乱List集合元素顺序" class="headerlink" title="打乱List集合元素顺序"></a>打乱List集合元素顺序</h5><p>Collections.Shuffle(list)</p>
+<h4 id="不可变集合"><a href="#不可变集合" class="headerlink" title="不可变集合"></a>不可变集合</h4><p>不可修改集合内容</p>
+<p>List<String> list &#x3D; list.of(“ “,” “);</p>
+<p>Set.of()</p>
+<p>Map.of()</p>
+<h3 id="Stream流"><a href="#Stream流" class="headerlink" title="Stream流"></a>Stream流</h3><h4 id="得到stream流"><a href="#得到stream流" class="headerlink" title="得到stream流"></a>得到stream流</h4><p>流会自动关闭，不能使用两次流，使用链式编程</p>
+<p>单列集合</p>
+<p>List.stream()</p>
+<p>双列集合</p>
+<p>转换成单列集合,keySet(),entrySet()</p>
+<p>数组</p>
+<p>零散</p>
+<p>调用API</p>
+<h4 id="中间方法"><a href="#中间方法" class="headerlink" title="中间方法"></a>中间方法</h4><p>filter()过滤</p>
+<p>limit(int i )个数</p>
+<p>Skip(int i) 跳过几个元素</p>
+<p>Distinct()去除重复</p>
+<p>Concat()合并流</p>
+<p>Map(new Function&lt;String ,Object&gt;)类型转换</p>
+<h4 id="终结方法"><a href="#终结方法" class="headerlink" title="终结方法"></a>终结方法</h4><p>forEach()遍历</p>
+<p>count()统计</p>
+<p>toArray()收集数组</p>
+<p>collect(Collector.toList())收集集合</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> day05.stream.test02;<br><br><span class="hljs-keyword">import</span> java.util.ArrayList;<br><span class="hljs-keyword">import</span> java.util.Collections;<br><span class="hljs-keyword">import</span> java.util.Map;<br><span class="hljs-keyword">import</span> java.util.function.Function;<br><span class="hljs-keyword">import</span> java.util.function.Predicate;<br><span class="hljs-keyword">import</span> java.util.stream.Collectors;<br><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Main</span> &#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span>&#123;<br>        <span class="hljs-comment">/*</span><br><span class="hljs-comment">        创建ArrayList添加字符串（zhangsan ,23//lisi,24//wangwua,25）</span><br><span class="hljs-comment">        ,保存大于24的人，收集到map</span><br><span class="hljs-comment">         */</span><br>        ArrayList&lt;String&gt; list =<span class="hljs-keyword">new</span> <span class="hljs-title class_">ArrayList</span>&lt;&gt;();<br>        Collections.addAll(list,<span class="hljs-string">&quot;zhangsan,23&quot;</span>,<span class="hljs-string">&quot;lisi,24&quot;</span>,<span class="hljs-string">&quot;wangwu,25&quot;</span>);<br><br><span class="hljs-comment">//        Map&lt;String, Integer&gt; collect = list.stream().filter(s -&gt; Integer.parseInt(s.split(&quot;,&quot;)[1]) &gt; 24).collect(Collectors.toMap(</span><br><span class="hljs-comment">//                new Function&lt;String, String&gt;() &#123;</span><br><span class="hljs-comment">//                    @Override</span><br><span class="hljs-comment">//                    public String apply(String s) &#123;</span><br><span class="hljs-comment">//                        return s.split(&quot;,&quot;)[0];</span><br><span class="hljs-comment">//                    &#125;</span><br><span class="hljs-comment">//                &#125;,</span><br><span class="hljs-comment">//                new Function&lt;String, Integer&gt;() &#123;</span><br><span class="hljs-comment">//                    @Override</span><br><span class="hljs-comment">//                    public Integer apply(String s) &#123;</span><br><span class="hljs-comment">//                        return Integer.parseInt(s.split(&quot;,&quot;)[1]);</span><br><span class="hljs-comment">//                    &#125;</span><br><span class="hljs-comment">//                &#125;</span><br><span class="hljs-comment">//        ));</span><br>        Map&lt;String, Integer&gt; collect = list.stream().filter(s -&gt; Integer.parseInt(s.split(<span class="hljs-string">&quot;,&quot;</span>)[<span class="hljs-number">1</span>]) &gt;= <span class="hljs-number">24</span>).collect(Collectors.toMap(s -&gt; s.split(<span class="hljs-string">&quot;,&quot;</span>)[<span class="hljs-number">0</span>], s -&gt; Integer.parseInt(s.split(<span class="hljs-string">&quot;,&quot;</span>)[<span class="hljs-number">1</span>])));<br>        System.out.println(collect);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>收集成Map是将流上的数据组合成字符串，再对字符串做处理，放入到建和值中</p>
+<p>Map()类型转换</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> day05.stream.test03;<br><br><span class="hljs-keyword">import</span> java.util.ArrayList;<br><span class="hljs-keyword">import</span> java.util.Collections;<br><span class="hljs-keyword">import</span> java.util.List;<br><span class="hljs-keyword">import</span> java.util.function.Function;<br><span class="hljs-keyword">import</span> java.util.stream.Collector;<br><span class="hljs-keyword">import</span> java.util.stream.Collectors;<br><span class="hljs-keyword">import</span> java.util.stream.Stream;<br><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Main</span> &#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> &#123;<br>        <span class="hljs-comment">/*</span><br><span class="hljs-comment">        两个list集合，第一个集合中，存储6名男人信息（“张三,23”）;第二个存贮6名女人</span><br><span class="hljs-comment">        男只要名字长度为3前2名</span><br><span class="hljs-comment">        女只要姓&quot;yang&quot;的，不要第一个</span><br><span class="hljs-comment">        过滤后合并到一起</span><br><span class="hljs-comment">        以上封装成Actor对象</span><br><span class="hljs-comment">        将所有人保存到List中</span><br><span class="hljs-comment">         */</span><br>        ArrayList&lt;String&gt; boyList = <span class="hljs-keyword">new</span> <span class="hljs-title class_">ArrayList</span>&lt;&gt;();<br>        ArrayList&lt;String&gt; girlList = <span class="hljs-keyword">new</span> <span class="hljs-title class_">ArrayList</span>&lt;&gt;();<br>        Collections.addAll(boyList, <span class="hljs-string">&quot;张三,23&quot;</span>, <span class="hljs-string">&quot;张三风,14&quot;</span>, <span class="hljs-string">&quot;李三思,25&quot;</span>, <span class="hljs-string">&quot;王三一,26&quot;</span>, <span class="hljs-string">&quot;赵三囍,37&quot;</span>, <span class="hljs-string">&quot;钱三强,28&quot;</span>);<br>        Collections.addAll(girlList, <span class="hljs-string">&quot;yangyi,34&quot;</span>, <span class="hljs-string">&quot;wangkeer,12&quot;</span>, <span class="hljs-string">&quot;dianzhatian,23&quot;</span>, <span class="hljs-string">&quot;weifangyu,45&quot;</span>, <span class="hljs-string">&quot;yangyangle,23&quot;</span>, <span class="hljs-string">&quot;yabngzibo,34&quot;</span>);<br><br>​        boyList.stream().filter(s -&gt; s.split(<span class="hljs-string">&quot;,&quot;</span>)[<span class="hljs-number">0</span>].length() == <span class="hljs-number">3</span>).limit(<span class="hljs-number">2</span>).forEach(S -&gt; System.out.println(S));<br>​        girlList.stream().filter(s -&gt; s.split(<span class="hljs-string">&quot;,&quot;</span>)[<span class="hljs-number">0</span>].substring(<span class="hljs-number">0</span>, <span class="hljs-number">4</span>).equals(<span class="hljs-string">&quot;yang&quot;</span>)).skip(<span class="hljs-number">1</span>).forEach(S -&gt; System.out.println(S));<br><br>​        Stream&lt;String&gt; boyStream = boyList.stream().filter(s -&gt; s.split(<span class="hljs-string">&quot;,&quot;</span>)[<span class="hljs-number">0</span>].length() == <span class="hljs-number">3</span>).limit(<span class="hljs-number">2</span>);<br>​        Stream&lt;String&gt; girlStream = girlList.stream().filter(s -&gt; s.split(<span class="hljs-string">&quot;,&quot;</span>)[<span class="hljs-number">0</span>].substring(<span class="hljs-number">0</span>, <span class="hljs-number">4</span>).equals(<span class="hljs-string">&quot;yang&quot;</span>)).skip(<span class="hljs-number">1</span>);<br>​        Stream&lt;String&gt; aggrStream = Stream.concat(boyStream, girlStream);<br><br>​        <span class="hljs-comment">//aggrStream.forEach(System.out::println);</span><br><br>​        List&lt;Actor&gt; collect = aggrStream.map(<br>​                s -&gt; <span class="hljs-keyword">new</span> <span class="hljs-title class_">Actor</span>(s.split(<span class="hljs-string">&quot;,&quot;</span>)[<span class="hljs-number">0</span>], Integer.parseInt(s.split(<span class="hljs-string">&quot;,&quot;</span>)[<span class="hljs-number">1</span>]))<br>​        ).collect(Collectors.toList());<br><br>​        System.out.println(collect);<br>​    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+
+<h3 id="方法引用"><a href="#方法引用" class="headerlink" title="方法引用"></a>方法引用</h3><p>要求</p>
+<p>1、引用处必须是函数式接口</p>
+<p>2、被引用方法必须已经存在</p>
+<p>3、被引用方法的形参和返回值需要和抽象方法保持一致（类::method注意被引用的方法形参是跟第二个参数后面的保持一致）</p>
+<p>静态方法引用 格式: class::method</p>
+<p>成员方法引用 格式: new class()::method，如果引用流中数据类成员方法(class::methed)，如果是其他类(对象::method)</p>
+<p>本类引用 this::method</p>
+<p>父类引用super::method</p>
+<p>构造方法引用class::new</p>
+<h3 id="异常"><a href="#异常" class="headerlink" title="异常"></a>异常</h3><h4 id="error"><a href="#error" class="headerlink" title="error"></a>error</h4><p>严重错误，系统级别错误。</p>
+<h4 id="exception"><a href="#exception" class="headerlink" title="exception"></a>exception</h4><p>异常，可能出现的问题</p>
+<h5 id="runtimeexception"><a href="#runtimeexception" class="headerlink" title="runtimeexception"></a>runtimeexception</h5><p>编译不会出现问题，但在运行时会产生错误。（本身及其子类               ）</p>
+<h5 id="编译异常"><a href="#编译异常" class="headerlink" title="编译异常"></a>编译异常</h5><p>编译时就出现的错误。</p>
+<h3 id="File"><a href="#File" class="headerlink" title="File"></a>File</h3><p>成员方法</p>
+<p>获取并遍历</p>
+<p>File[] listFiles();</p>
+<h3 id="IO流"><a href="#IO流" class="headerlink" title="IO流"></a>IO流</h3><p>字节流：操作所有类型的文件(拷贝使用场景)</p>
+<p>字符流：操作纯文本文件(读取纯文本文件中的数据，往纯文本文件中写入)</p>
+<h4 id="FileOutputStream"><a href="#FileOutputStream" class="headerlink" title="FileOutputStream"></a>FileOutputStream</h4><p>父级路径必须存在，存在文件会清空文件内容</p>
+<h5 id="写入"><a href="#写入" class="headerlink" title="写入"></a>写入</h5><p>Write(byte b)</p>
+<p>wrtie(byte[] b)</p>
+<p>&#x2F;&#x2F;byte[]  &#x3D; String.getbytes();&#x2F;&#x2F;得到字节流</p>
+<p>![image-20241217203923457](&#x2F;Users&#x2F;liutao&#x2F;Library&#x2F;Application Support&#x2F;typora-user-images&#x2F;image-20241217203923457.png)</p>
+<p>续写,fileoutputstream(str,append&#x3D;true)</p>
+<p>释放资源close()</p>
+<h4 id="FileinputStream"><a href="#FileinputStream" class="headerlink" title="FileinputStream"></a>FileinputStream</h4><p>Read()&#x2F;&#x2F;读不到返回-1</p>
+<p>循环读取</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-type">FileInputStream</span> <span class="hljs-variable">fis</span> <span class="hljs-operator">=</span> FileInputStream(<span class="hljs-string">&quot;path&quot;</span>);<br><span class="hljs-type">int</span> b;<br><span class="hljs-keyword">while</span>((b=fis.read())!=-<span class="hljs-number">1</span>)&#123;<br>	System.out.print(b);<br>&#125;<br>fis.close();<br><br></code></pre></td></tr></table></figure>
+
+<p>文件拷贝</p>
+<p>释放资源，先开后释放</p>
+<p>多字节读取</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-type">int</span> len;<br><span class="hljs-type">byte</span>[] bytes = <span class="hljs-keyword">new</span> <span class="hljs-title class_">byte</span>[len];<br><span class="hljs-type">int</span> <span class="hljs-variable">lenRead</span> <span class="hljs-operator">=</span> fis.read(bytes);<br></code></pre></td></tr></table></figure>
+
+<h3 id="字符集"><a href="#字符集" class="headerlink" title="字符集"></a>字符集</h3><p>GBK</p>
+<p>2字节存储，高位字节二进制1为开头（英文开头是0）区分</p>
+<p>兼容ASCII</p>
+<p>unicode</p>
+<p>（utf-16,utf-32）</p>
+<p>utf-8编码规则（1-4个字节）</p>
+<p>ASCII 1一个字节</p>
+<p>简体中文 3个字节</p>
+<p>![image-20241219155426656](&#x2F;Users&#x2F;liutao&#x2F;Library&#x2F;Application Support&#x2F;typora-user-images&#x2F;image-20241219155426656.png)</p>
+<p>(首位一定是1)</p>
+<p>不要用字节流读取文本文件</p>
+<p>getBytes()使用默认方式编码</p>
+<p>getBytes(String charsetName) 使用指定的方式进行编码</p>
+<p>String(byte[] bytes,String charsetName) 使用指定方式进行解码</p>
+<h3 id="字符流"><a href="#字符流" class="headerlink" title="字符流"></a>字符流</h3><p>字符流 &#x3D; 字节流+字符集</p>
+<h4 id="输入流Reader"><a href="#输入流Reader" class="headerlink" title="输入流Reader"></a>输入流Reader</h4><p>FileReader fr</p>
+<p>Fr.read()底层</p>
+<p>按字符集读取</p>
+<p>解码转成十进制数</p>
+<p>需要强转(char) chr</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-type">FileReader</span> <span class="hljs-variable">fr</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">FileReader</span>(<span class="hljs-string">&quot;&quot;</span>);<br><span class="hljs-type">int</span> ch;<br><span class="hljs-keyword">while</span>((ch = fr.read())!=-<span class="hljs-number">1</span>)&#123;<br>	System.out.print((<span class="hljs-type">char</span>)ch);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>注意有参数的read()</p>
+<p>读取数据，解码，十进制强转，放到数组中</p>
+<p>read()中有缓冲区,(8192字节).</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-type">FileReader</span> <span class="hljs-variable">fr</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">FileReader</span>();<br>fr.read();<br><span class="hljs-comment">//创建缓冲区</span><br><span class="hljs-type">FileReader</span> <span class="hljs-variable">fr1</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">FileReader</span>();<br><span class="hljs-comment">//文件数据被清空</span><br><span class="hljs-type">int</span> ch;<br><br><span class="hljs-keyword">while</span>((ch = fr.read())!=-<span class="hljs-number">1</span>)&#123;<br>	System.out.println((<span class="hljs-type">char</span>)ch);<br>&#125;<br><br><span class="hljs-comment">//能够读取到缓冲区的数据，但是无法读取文件数据,只会清空文件数据，但是不会清空缓冲区数据</span><br></code></pre></td></tr></table></figure>
+
+<h4 id="输出流Writer"><a href="#输出流Writer" class="headerlink" title="输出流Writer"></a>输出流Writer</h4><p>FileWriter</p>
+<p>FileWriter(String pasth,boolean append)续写</p>
+<p>字节流没有缓冲区，但是字符流有缓冲区</p>
+<p>缓冲区写入文件3种情况</p>
+<p>缓冲区满了&#x2F;&#x2F;刷新flush()&#x2F;&#x2F;close()</p>
+<h3 id="缓冲流"><a href="#缓冲流" class="headerlink" title="缓冲流"></a>缓冲流</h3><p>![image-20241223153411523](&#x2F;Users&#x2F;liutao&#x2F;Library&#x2F;Application Support&#x2F;typora-user-images&#x2F;image-20241223153411523.png)</p>
+<h4 id="字节缓冲流"><a href="#字节缓冲流" class="headerlink" title="字节缓冲流"></a>字节缓冲流</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-type">BufferInputStream</span> <span class="hljs-variable">bis</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">BufferInputStream</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">FileInputStream</span>());<br><span class="hljs-type">BufferOutputStream</span> <span class="hljs-variable">bos</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">BufferOutputStream</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">FileOutputStream</span>());<br><br><span class="hljs-type">byte</span>[] bytes = <span class="hljs-keyword">new</span> <span class="hljs-title class_">byte</span>[<span class="hljs-number">1024</span>];<br><span class="hljs-type">int</span> len;<br><span class="hljs-keyword">while</span>((len = bis.read())!=-<span class="hljs-number">1</span>)&#123;<br>	bos.write(bytes,<span class="hljs-number">0</span>,len);<br>&#125;<br>bis.close();<br>bos.close();<br><span class="hljs-comment">//缓冲区是磁盘读到内存的缓存（磁盘-&gt;内存），byte[1024]则是内存中转手的数据(内存-&gt;内存)</span><br></code></pre></td></tr></table></figure>
+
+<p>![image-20241223155023942](&#x2F;Users&#x2F;liutao&#x2F;Library&#x2F;Application Support&#x2F;typora-user-images&#x2F;image-20241223155023942.png)</p>
+<h3 id="字符缓冲流"><a href="#字符缓冲流" class="headerlink" title="字符缓冲流"></a>字符缓冲流</h3><p>BufferReader(new FileReader());</p>
+<p>BufferWriter(new FileWriter());</p>
+<p>带有默认的8k的字符的缓冲区</p>
+<p>readLine()&#x2F;&#x2F;无数据返回null，不会保存换行</p>
+<p>newLine()跨平台的写入换行</p>
+<h3 id="转换流"><a href="#转换流" class="headerlink" title="转换流"></a>转换流</h3><p>字符流与字节流的桥梁</p>
+<p>![image-20241223163005262](&#x2F;Users&#x2F;liutao&#x2F;Library&#x2F;Application Support&#x2F;typora-user-images&#x2F;image-20241223163005262.png)</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">//转换流</span><br><span class="hljs-type">InputStreamReader</span> <span class="hljs-variable">isr</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">InputStreamReader</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">FileInputStream</span>(),<span class="hljs-string">&quot;GBK&quot;</span>);<br><br><span class="hljs-type">OutputStreamWriter</span> <span class="hljs-variable">osw</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">OutputStreamWriter</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">FileOutputStream</span>(),<span class="hljs-string">&quot;UTF-8&quot;</span>);<br><br><span class="hljs-type">int</span> b;<br><span class="hljs-keyword">while</span>((b= isr.read())!=-<span class="hljs-number">1</span>)&#123;<br>	osw.write(b);<br>&#125;<br>isr.close();<br>osw.close();<br><br><span class="hljs-comment">//JDK11后,替换方案</span><br><br><span class="hljs-type">FileReader</span> <span class="hljs-variable">fr</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">FileReader</span>(path,Charset.forName(<span class="hljs-string">&quot;GBK&quot;</span>));<br><span class="hljs-type">FileWriter</span> <span class="hljs-variable">fw</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">FileWriter</span>(path,Charset.forName(<span class="hljs-string">&quot;UTF-8&quot;</span>));<br><br><span class="hljs-type">int</span> b;<br><span class="hljs-keyword">while</span>((b=fr.read())!=-<span class="hljs-number">1</span>)&#123;<br>	fw.write(b);<br>&#125;<br>fr.close();<br>fw.close();<br></code></pre></td></tr></table></figure>
+
+<p>字节流想要使用字符流中的方法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">//使用字符流readline()读取一整行字节流</span><br><span class="hljs-type">BfferReader</span> <span class="hljs-variable">bf</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">BufferReader</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">InputStreamReader</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">FileInputStream</span>(path)));<br><br>String line;<br><span class="hljs-keyword">while</span>((line = bf.readline())!=<span class="hljs-literal">null</span>)&#123;<br>	System.out.println(line);<br>&#125;<br>bf.close();<br></code></pre></td></tr></table></figure>
+
+<h3 id="序列化流"><a href="#序列化流" class="headerlink" title="序列化流"></a>序列化流</h3><p>字节流的一种</p>
+<p>java对象写入到本地文件</p>
+<p>Serializable&#x2F;&#x2F;没有抽象方法的接口，标志性接口，标志该类可以被序列化</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-type">ObiectOutputStreram</span> <span class="hljs-variable">oos</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">ObjectOutputStream</span>(FileOutputStream(path));<br>oos.writeObject(<span class="hljs-keyword">new</span> <span class="hljs-title class_">Student</span>(<span class="hljs-string">&quot;&quot;</span>,<span class="hljs-string">&quot;&quot;</span>));<br>oos.close();<br></code></pre></td></tr></table></figure>
+
+
+
+<h3 id="反序列化流"><a href="#反序列化流" class="headerlink" title="反序列化流"></a>反序列化流</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-type">ObjectInputStream</span> <span class="hljs-variable">ois</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">ObjectInputStream</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">FileInputStream</span>(path));<br><br><span class="hljs-type">Student</span> <span class="hljs-variable">stu</span> <span class="hljs-operator">=</span> (Student) ois.readObject();<br><br>ois.close();<br><br><br></code></pre></td></tr></table></figure>
+
+
+
+<p>如果javaBean发生修改，增加版本号</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">//在javaBean中增加版本号</span><br><span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-type">long</span> <span class="hljs-variable">serialVersionUID</span> <span class="hljs-operator">=</span> <span class="hljs-number">1L</span>;<br><span class="hljs-comment">//设定部分参数不能够序列化,添加瞬态关键字</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">transient</span> String address;<br></code></pre></td></tr></table></figure>
+
+
+
+<p>多次写入和读取对象，注意封装到ArrayList中</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-type">ObjectOutputStream</span> <span class="hljs-variable">oos</span> <span class="hljs-operator">=</span><span class="hljs-keyword">new</span> <span class="hljs-title class_">ObjcetOutputStrem</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">FileOutputStream</span>(path));<br><br><span class="hljs-comment">//封装</span><br>ArrayList&lt;Student&gt; list = <span class="hljs-keyword">new</span> <span class="hljs-title class_">ArrayList</span>&lt;&gt;();<br>list.add(<span class="hljs-keyword">new</span> <span class="hljs-title class_">Student</span>);<br>list.add(<span class="hljs-keyword">new</span> <span class="hljs-title class_">Student</span>);<br><br>oos.writeObject(list);<br>oos.close();<br><span class="hljs-comment">//读取</span><br><br><span class="hljs-type">ObjectInputStream</span> <span class="hljs-variable">ois</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">ObjectInputStream</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">FileInputStream</span>(path));<br><br>ArrayList&lt;Student&gt; listRead = (ArrayList&lt;Student&gt;)ois.readObject();<br><br>ois.close();<br></code></pre></td></tr></table></figure>
+
+<h3 id="打印流"><a href="#打印流" class="headerlink" title="打印流"></a>打印流</h3><h4 id="printStream"><a href="#printStream" class="headerlink" title="printStream"></a>printStream</h4><p> write</p>
+<p>&#x2F;&#x2F;数据远洋输出&#x2F;&#x2F;写出+自动刷新+自动换行</p>
+<p>print</p>
+<p>println</p>
+<p>printf</p>
+<p>（System.out就是一个打印流）</p>
+<h4 id="printWriter"><a href="#printWriter" class="headerlink" title="printWriter"></a>printWriter</h4><p>有缓冲区，自动刷新需要手动开启</p>
+<h3 id="解压缩流"><a href="#解压缩流" class="headerlink" title="解压缩流"></a>解压缩流</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-type">File</span> <span class="hljs-variable">src</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">File</span>(path);<br><span class="hljs-type">File</span> <span class="hljs-variable">dest</span> <span class="hljs-operator">=</span><span class="hljs-keyword">new</span> <span class="hljs-title class_">File</span>(path);<br><span class="hljs-type">zipinputStream</span> <span class="hljs-variable">zip</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">zipInputStream</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">FileInputStream</span>(src));<br><br>zipEntry entry;<br><span class="hljs-keyword">while</span>((entry = zip.getEntry())!=<span class="hljs-literal">null</span>)&#123;<br>	System.out.print(entry);<br>	<span class="hljs-keyword">if</span>(entry.isDirectory())&#123;<br>		<span class="hljs-type">File</span> <span class="hljs-variable">file</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">File</span>(dest,entry.toString());<br>		file.mkdir();<br>	&#125;<span class="hljs-keyword">else</span>&#123;<br>		<span class="hljs-comment">//读取文件数据</span><br>		<span class="hljs-type">FileOutputStream</span> <span class="hljs-variable">fos</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">FileOutputStream</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">File</span>(dest,entry,toString()));<br>		<span class="hljs-type">byte</span>[] bytes = <span class="hljs-keyword">new</span> <span class="hljs-title class_">byte</span>[<span class="hljs-number">1024</span>];<br>		<span class="hljs-type">int</span> len;<br>		<span class="hljs-keyword">while</span>((len=zip.read())!=-<span class="hljs-number">1</span>)&#123;<br>			fos.write(bytes,<span class="hljs-number">0</span>,len);<br>		&#125;<br>		fos.close();<br>		<span class="hljs-comment">//表示一个文件读取完毕</span><br>		fos.closeEntry();<br>	&#125;<br>&#125;<br>zip.clsoe();<br></code></pre></td></tr></table></figure>
+
+<h3 id="压缩流"><a href="#压缩流" class="headerlink" title="压缩流"></a>压缩流</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-type">File</span> <span class="hljs-variable">src</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">File</span>(path);<br><span class="hljs-type">File</span> <span class="hljs-variable">destParent</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">File</span>(pathParent);<br><span class="hljs-type">File</span> <span class="hljs-variable">dest</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">File</span>(destParent,src.getName()+<span class="hljs-string">&quot;.zip&quot;</span>);<br><br><span class="hljs-type">zipOutputStream</span> <span class="hljs-variable">zos</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">zipOutputStream</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">FileOutputStram</span>(dest));<br><span class="hljs-comment">//获取src中文件，变成zipEntry对象，放入压缩包中(需递归)</span><br>zip.clsoe();<br><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">toZip</span><span class="hljs-params">(File src ,ZipOutputStream zos,String name)</span>&#123;<br>	File[] filelist = src.listFiles();<br>	<span class="hljs-keyword">for</span>(File file:filelist)&#123;<br>		<span class="hljs-keyword">if</span>(file.isFile())&#123;<br>			<span class="hljs-type">ZipEntry</span> <span class="hljs-variable">entry</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">ZipEntry</span>(name + <span class="hljs-string">&quot;\\&quot;</span> + file.getName());<br>			<span class="hljs-comment">//创建压缩包中的文件结构</span><br>			zos.putNextEntry(entry);<br>			<span class="hljs-comment">//写入</span><br>			<span class="hljs-type">FileInputStream</span> <span class="hljs-variable">fis</span> <span class="hljs-operator">=</span> enw <span class="hljs-title function_">FileInputStream</span><span class="hljs-params">(file)</span>;<br>			<span class="hljs-type">byte</span>[] bytes = <span class="hljs-keyword">new</span> <span class="hljs-title class_">byte</span>[<span class="hljs-number">1024</span>];<br>			<span class="hljs-type">int</span> len;<br>			<span class="hljs-keyword">while</span>((len = fis.read(bytes))!=-<span class="hljs-number">1</span>)&#123;<br>				zos.write(bytes,<span class="hljs-number">0</span>,len);<br>			&#125;<br>			fis.close();<br>			zos.closeEntry();<br>	&#125;<span class="hljs-keyword">else</span>&#123;<br>		<span class="hljs-comment">//是文件</span><br>		toZip(file,zos,name+<span class="hljs-string">&quot;\\&quot;</span>+file.getName());<br>	&#125;<br>	&#125;<br>	zos.close()<br>&#125;<br><br><br><br></code></pre></td></tr></table></figure>
+
+<h3 id="Commons-io"><a href="#Commons-io" class="headerlink" title="Commons-io"></a>Commons-io</h3><p>jar包</p>
+<p>![image-20241224160534486](&#x2F;Users&#x2F;liutao&#x2F;Library&#x2F;Application Support&#x2F;typora-user-images&#x2F;image-20241224160534486.png)</p>
+<h4 id="FileUtils"><a href="#FileUtils" class="headerlink" title="FileUtils"></a>FileUtils</h4><p>copyFile</p>
+<p>readFileToString</p>
+<h4 id="IOUtils"><a href="#IOUtils" class="headerlink" title="IOUtils"></a>IOUtils</h4><h3 id="Hutool"><a href="#Hutool" class="headerlink" title="Hutool"></a>Hutool</h3><h3 id="多线程"><a href="#多线程" class="headerlink" title="多线程"></a>多线程</h3><h4 id="多线程实现"><a href="#多线程实现" class="headerlink" title="多线程实现"></a>多线程实现</h4><h5 id="继承Thread"><a href="#继承Thread" class="headerlink" title="继承Thread"></a>继承Thread</h5><p>重写run()方法</p>
+<p>Run()中书写运行代码</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">//线程类MyThread extend Thread</span><br><span class="hljs-type">MyThread</span> <span class="hljs-variable">t1</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">MyThread</span>();<br>t1.start();<br></code></pre></td></tr></table></figure>
+
+
+
+<h5 id="实现Runnable接口实现多线程"><a href="#实现Runnable接口实现多线程" class="headerlink" title="实现Runnable接口实现多线程"></a>实现Runnable接口实现多线程</h5><p>重写其中的run方法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">//MyRun implements Runnable</span><br><span class="hljs-comment">//获取当前线程对象currentThread()</span><br></code></pre></td></tr></table></figure>
+
+
+
+<h5 id=""><a href="#" class="headerlink" title=""></a></h5><p>可以获取线程执行后的返回值</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">MyCallable</span> <span class="hljs-keyword">implements</span> <span class="hljs-title class_">Callable</span>&lt;Integer&gt;&#123;<br>	<span class="hljs-keyword">public</span> Integer <span class="hljs-title function_">call</span><span class="hljs-params">()</span> &#123;<br>		<span class="hljs-comment">//run code;</span><br>	&#125;<br>&#125;<br><br><span class="hljs-comment">//创建多线程参数,Callable表示多线程执行的任务的数据参数</span><br><span class="hljs-type">MyCallable</span> <span class="hljs-variable">myCall</span> <span class="hljs-operator">=</span><span class="hljs-keyword">new</span> <span class="hljs-title class_">MyCallable</span>();<br><span class="hljs-comment">//创建FutureTask对象(管理多线程运行结果)</span><br>FutureTask&lt;Integer&gt; ft = <span class="hljs-keyword">new</span> <span class="hljs-title class_">FutureTask</span>&lt;&gt;(myCall);<br><span class="hljs-comment">//创建线程的对象</span><br><span class="hljs-type">Thread</span> <span class="hljs-variable">t</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Thread</span>();<br>t.start();<br><span class="hljs-comment">//获取实验结果</span><br><span class="hljs-type">Integer</span> <span class="hljs-variable">result</span> <span class="hljs-operator">=</span> t.get();<br></code></pre></td></tr></table></figure>
+
+
+
+<h5 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h5><p>![image-20241231170316032](&#x2F;Users&#x2F;liutao&#x2F;Library&#x2F;Application Support&#x2F;typora-user-images&#x2F;image-20241231170316032.png)</p>
+<h6 id="常见的成员方法"><a href="#常见的成员方法" class="headerlink" title="常见的成员方法"></a>常见的成员方法</h6><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs java">getName()<br>setName()<span class="hljs-comment">//也可以使用MyThread重写Thread的构造方法</span><br>currentThread()<span class="hljs-comment">//获取当前线程对象，当JVM启动，便会有main线程</span><br>sleep(<span class="hljs-type">long</span> time)<span class="hljs-comment">//线程休眠</span><br>setPriority(<span class="hljs-type">int</span> newPriority)<span class="hljs-comment">//设置优先级</span><br><span class="hljs-keyword">final</span> <span class="hljs-type">int</span> <span class="hljs-title function_">newPriority</span><span class="hljs-params">()</span><span class="hljs-comment">//获取优先级</span><br>setDaemon()<span class="hljs-comment">//设置守护进程</span><br><span class="hljs-keyword">yield</span>()<span class="hljs-comment">//出让进程</span><br>join()<span class="hljs-comment">//插入进程</span><br><br><br></code></pre></td></tr></table></figure>
+
+<p>（无法抛出父类没有的异常，只能够使用try）</p>
+<h5 id="优先级"><a href="#优先级" class="headerlink" title="优先级"></a>优先级</h5><p>优先级是一个概率问题</p>
+<h5 id="守护线程"><a href="#守护线程" class="headerlink" title="守护线程"></a>守护线程</h5><p>当非守护进程结束后，守护进程也结束了</p>
+<h4 id="线程声明周期"><a href="#线程声明周期" class="headerlink" title="线程声明周期"></a>线程声明周期</h4><p>![image-20241231205234338](&#x2F;Users&#x2F;liutao&#x2F;Library&#x2F;Application Support&#x2F;typora-user-images&#x2F;image-20241231205234338.png)</p>
+<h4 id="安全问题-同步问题"><a href="#安全问题-同步问题" class="headerlink" title="安全问题-同步问题"></a>安全问题-同步问题</h4><p>锁</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">static</span> <span class="hljs-type">Object</span> <span class="hljs-variable">obj</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Object</span>();<span class="hljs-comment">//锁对象必须是唯一static</span><br><span class="hljs-comment">//一般锁对象使用class字节码文件对象</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">run</span><span class="hljs-params">()</span>&#123;<br>	<span class="hljs-keyword">synchronized</span>(MyThread.class)&#123;<br>		<span class="hljs-comment">//run code</span><br>	&#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h4 id="同步方法"><a href="#同步方法" class="headerlink" title="同步方法"></a>同步方法</h4><p>![image-20241231211501900](&#x2F;Users&#x2F;liutao&#x2F;Library&#x2F;Application Support&#x2F;typora-user-images&#x2F;image-20241231211501900.png)</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs"><br></code></pre></td></tr></table></figure>
+
+
+
+<h4 id="锁"><a href="#锁" class="headerlink" title="锁"></a>锁</h4><p>Lock接口,实现类ReentrantLock</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">static</span> <span class="hljs-keyword">public</span> <span class="hljs-type">Lock</span> <span class="hljs-variable">lock</span> <span class="hljs-operator">=</span><span class="hljs-keyword">new</span> <span class="hljs-title class_">ReentrantLock</span>();<br><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">run</span><span class="hljs-params">()</span>&#123;<br>	lock.lock();<br>  <span class="hljs-keyword">try</span>&#123;<br>    <span class="hljs-comment">//code</span><br>  &#125;<span class="hljs-keyword">catch</span>&#123;<br>    <span class="hljs-comment">//error</span><br>  &#125;<span class="hljs-keyword">finally</span>&#123;<br>    lock.unlock();<br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h5 id="死锁"><a href="#死锁" class="headerlink" title="死锁"></a>死锁</h5><p>不要写嵌套锁</p>
+<h3 id="等待唤醒机制"><a href="#等待唤醒机制" class="headerlink" title="等待唤醒机制"></a>等待唤醒机制</h3><h3 id="线程的状态"><a href="#线程的状态" class="headerlink" title="线程的状态"></a>线程的状态</h3><p>![image-20250102135028873](&#x2F;Users&#x2F;liutao&#x2F;Library&#x2F;Application Support&#x2F;typora-user-images&#x2F;image-20250102135028873.png)</p>
+<p>JVM中定义的状态</p>
+<p>![image-20250102135300146](&#x2F;Users&#x2F;liutao&#x2F;Library&#x2F;Application Support&#x2F;typora-user-images&#x2F;image-20250102135300146.png)</p>
+<h3 id="线程池"><a href="#线程池" class="headerlink" title="线程池"></a>线程池</h3><p>线程复用，一个线程执行完毕，使用存在的线程运行当前线程</p>
+<p>如果线程池中没有空闲的线程，则创建新的线程，没有足够的线程额，线程就排队等待</p>
+<h4 id="ExecutorService"><a href="#ExecutorService" class="headerlink" title="ExecutorService"></a>ExecutorService</h4><h4 id="自定义线程池"><a href="#自定义线程池" class="headerlink" title="自定义线程池"></a>自定义线程池</h4><p>![image-20250102143328266](&#x2F;Users&#x2F;liutao&#x2F;Library&#x2F;Application Support&#x2F;typora-user-images&#x2F;image-20250102143328266.png)</p>
+<h5 id="最大并行数"><a href="#最大并行数" class="headerlink" title="最大并行数"></a>最大并行数</h5><p>4核心8线程，8个逻辑处理器，并行数8</p>
+<p>![image-20250102144349598](&#x2F;Users&#x2F;liutao&#x2F;Library&#x2F;Application Support&#x2F;typora-user-images&#x2F;image-20250102144349598.png)</p>
+<p>thread dump 计算总时间&#x2F;cpu计算时间</p>
+<h3 id="网络编程"><a href="#网络编程" class="headerlink" title="网络编程"></a>网络编程</h3><p>cs&#x2F;bs</p>
+<p>cs本地数据，提供更好的画面</p>
+<p>bs维护简单，本地没有数据</p>
+<p>IP：设备在网络中的地址</p>
+<p>端口：程序在设备中的唯一标识</p>
+<p>协议：数据传输的规则</p>
+<h4 id="IP"><a href="#IP" class="headerlink" title="IP"></a>IP</h4><p>IPV4</p>
+<p>IPV6</p>
+<p>![image-20250102150239409](&#x2F;Users&#x2F;liutao&#x2F;Library&#x2F;Application Support&#x2F;typora-user-images&#x2F;image-20250102150239409.png)</p>
+<p>公网IP,局域网IP</p>
+<p>168.192.0.0局域网ip</p>
+<h5 id="InetAddress"><a href="#InetAddress" class="headerlink" title="InetAddress"></a>InetAddress</h5><h4 id="端口"><a href="#端口" class="headerlink" title="端口"></a>端口</h4><p>0~65535</p>
+<p>0~1023是知名程序使用的端口ftp</p>
+<h4 id="协议"><a href="#协议" class="headerlink" title="协议"></a>协议</h4><p>TCP</p>
+<p>UDP</p>
+<h4 id="UDP"><a href="#UDP" class="headerlink" title="UDP"></a>UDP</h4><p>单播</p>
+<p>组播224.0.0.0~239.255.255.255</p>
+<p>广播：255.255.255.255</p>
+<h3 id="反射"><a href="#反射" class="headerlink" title="反射"></a>反射</h3><p>反射允许对成员变量，成员方法，构造方法的信息进行编程访问</p>
+<p>获取class对象的三种方式</p>
+<p>1、Class.forName() 源代码阶段 Class.forName(“包名+类名”)</p>
+<p>2、类名.class 加载阶段</p>
+<p>3、对象.getClass() 运行阶段</p>
+<p>![image-20250102165312312](&#x2F;Users&#x2F;liutao&#x2F;Library&#x2F;Application Support&#x2F;typora-user-images&#x2F;image-20250102165312312.png)</p>
+<p>![image-20250102200453645](&#x2F;Users&#x2F;liutao&#x2F;Library&#x2F;Application Support&#x2F;typora-user-images&#x2F;image-20250102200453645.png)</p>
+<p>![image-20250102200517326](&#x2F;Users&#x2F;liutao&#x2F;Library&#x2F;Application Support&#x2F;typora-user-images&#x2F;image-20250102200517326.png)</p>
+<p>![image-20250102200812716](&#x2F;Users&#x2F;liutao&#x2F;Library&#x2F;Application Support&#x2F;typora-user-images&#x2F;image-20250102200812716.png)</p>
+<h3 id="动态代理"><a href="#动态代理" class="headerlink" title="动态代理"></a>动态代理</h3><p>类加载器：将class文件加载到内存中classLoader()</p>
+<p>?</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Java</div>
+      <div>http://example.com/2024/11/11/Java/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Fatear</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2024年11月11日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2024/11/11/hello-world/" title="Hello World">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Hello World</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/11/10/githubblog/" title="githubblog">
+                        <span class="hidden-mobile">githubblog</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"8eBbLlW8ZXk3Rr4j6ffVhWep-gzGzoHsz","appKey":"1IVnS6tLIcO5nGFjzaJqhgNJ","path":"window.location.pathname","placeholder":"说点什么","avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+
+  
+
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
