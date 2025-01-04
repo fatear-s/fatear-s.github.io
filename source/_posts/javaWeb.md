@@ -67,11 +67,15 @@ javaScript 放在<script></script>之间
 
 方式2
 
+```HTML
 <script src = "js/demo.js"></script>
+```
 
 不能自闭合
 
+```html
 <script src />
+```
 
 ### js语法
 
