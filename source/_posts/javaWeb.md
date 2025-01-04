@@ -69,7 +69,9 @@ javaScript 放在<script></script>之间
 
 <script src = "js/demo.js"></script>
 
-不能自闭合<script src />
+不能自闭合
+
+<script src />
 
 ### js语法
 
