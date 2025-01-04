@@ -27,7 +27,7 @@
 <meta property="og:description" content="JavaWeb介绍![image-20241209170002293](&#x2F;Users&#x2F;liutao&#x2F;Library&#x2F;Application Support&#x2F;typora-user-images&#x2F;image-20241209170002293.png) 技术栈 ![image-20241209170130894](&#x2F;Users&amp;#">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2024-12-09T08:53:27.000Z">
-<meta property="article:modified_time" content="2025-01-04T04:59:37.906Z">
+<meta property="article:modified_time" content="2025-01-04T14:06:53.030Z">
 <meta property="article:author" content="Fatear">
 <meta name="twitter:card" content="summary_large_image">
   
@@ -237,7 +237,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          752 字
+          2.8k 字
         
       </span>
     
@@ -248,7 +248,7 @@
         
         
         
-          7 分钟
+          24 分钟
         
       </span>
     
@@ -368,7 +368,212 @@
 <p>Blur</p>
 <h5 id="表单"><a href="#表单" class="headerlink" title="表单"></a>表单</h5><p>input</p>
 <p>submit</p>
-<h3 id="Vue框架"><a href="#Vue框架" class="headerlink" title="Vue框架"></a>Vue框架</h3><h5 id="Vue快速入门"><a href="#Vue快速入门" class="headerlink" title="Vue快速入门"></a>Vue快速入门</h5><h5 id="Vue常用指令"><a href="#Vue常用指令" class="headerlink" title="Vue常用指令"></a>Vue常用指令</h5><h5 id="Vue声明周期"><a href="#Vue声明周期" class="headerlink" title="Vue声明周期"></a>Vue声明周期</h5>
+<h3 id="Vue框架"><a href="#Vue框架" class="headerlink" title="Vue框架"></a>Vue框架</h3><h5 id="Vue快速入门"><a href="#Vue快速入门" class="headerlink" title="Vue快速入门"></a>Vue快速入门</h5><h5 id="Vue常用指令"><a href="#Vue常用指令" class="headerlink" title="Vue常用指令"></a>Vue常用指令</h5><h5 id="Vue声明周期"><a href="#Vue声明周期" class="headerlink" title="Vue声明周期"></a>Vue声明周期</h5><h3 id="Maven"><a href="#Maven" class="headerlink" title="Maven"></a>Maven</h3><h4 id="依赖管理"><a href="#依赖管理" class="headerlink" title="依赖管理"></a>依赖管理</h4><p>之前的项目中，需要下载jar包，使用maven只需要配置xml文件</p>
+<h4 id="项目构建"><a href="#项目构建" class="headerlink" title="项目构建"></a>项目构建</h4><h4 id="统一的项目结构"><a href="#统一的项目结构" class="headerlink" title="统一的项目结构"></a>统一的项目结构</h4><p>不同IDE会产生不同的结构，但是使用maven是统一的架构，都可以使用</p>
+<ul>
+<li>项目对象模型 (Project Object Model)</li>
+<li>依赖管理模型(Dependency)</li>
+<li>构建生命周期&#x2F;阶段(Build lifecycle &amp; phases)</li>
+</ul>
+<h4 id="项目对象模型"><a href="#项目对象模型" class="headerlink" title="项目对象模型"></a>项目对象模型</h4><p>将我们自己的项目抽象成一个对象模型，有自己专属的坐标</p>
+<p>坐标，就是资源(jar包)的唯一标识，通过坐标可以定位到所需资源(jar包)位置。</p>
+<p>坐标的组成部分：</p>
+<ul>
+<li>groupId: 组织名</li>
+<li>arfitactId: 模块名</li>
+<li>Version: 版本号</li>
+</ul>
+<h4 id="依赖管理模型"><a href="#依赖管理模型" class="headerlink" title="依赖管理模型"></a>依赖管理模型</h4><p>现在我们只需要在pom.xml中配置依赖的配置文件即可。 而这个依赖对应的jar包其实就在我们本地电脑上的maven仓库中。 </p>
+<ol>
+<li>在pom.xml中编写<code>&lt;dependencies&gt;</code>标签</li>
+<li>在<code>&lt;dependencies&gt;</code>标签中使用<code>&lt;dependency&gt;</code>引入坐标</li>
+<li>定义坐标的 <code>groupId</code>、<code>artifactId</code>、<code>version</code></li>
+<li>点击刷新按钮，引入最新加入的坐标</li>
+</ol>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs HTML"><span class="hljs-tag">&lt;<span class="hljs-name">dependencies</span>&gt;</span><br>    <span class="hljs-comment">&lt;!-- 依赖 : spring-context --&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.springframework<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>spring-context<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>6.1.4<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">dependencies</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p>如果不知道依赖的坐标信息，可以到mvn的中央仓库（<a target="_blank" rel="noopener" href="https://mvnrepository.com/%EF%BC%89%E4%B8%AD%E6%90%9C%E7%B4%A2">https://mvnrepository.com/）中搜索</a></p>
+<p>IDEA （Alt + Insert）搜索</p>
+<h4 id="依赖传递"><a href="#依赖传递" class="headerlink" title="依赖传递"></a>依赖传递</h4><p>我们可以通过Maven中的排除依赖功能，来将这个依赖排除掉。</p>
+<h4 id="依赖排除"><a href="#依赖排除" class="headerlink" title="依赖排除"></a>依赖排除</h4><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs HTML"><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.springframework<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>spring-context<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>6.1.4<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span><br><br>    <span class="hljs-comment">&lt;!--排除依赖, 主动断开依赖的资源--&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">exclusions</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">exclusion</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>io.micrometer<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>micrometer-observation<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>        <span class="hljs-tag">&lt;/<span class="hljs-name">exclusion</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">exclusions</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<h4 id="依赖范围控制"><a href="#依赖范围控制" class="headerlink" title="依赖范围控制"></a>依赖范围控制</h4><p>在maven中，如果希望限制依赖的使用范围，可以通过 <code>&lt;scope&gt;…&lt;/scope&gt;</code> 设置其作用范围。</p>
+<h3 id="maven仓库"><a href="#maven仓库" class="headerlink" title="maven仓库"></a>maven仓库</h3><p>Maven仓库分为：</p>
+<ul>
+<li>本地仓库：自己计算机上的一个目录(用来存储jar包)</li>
+<li>中央仓库：由Maven团队维护的全球唯一的。仓库地址：<a target="_blank" rel="noopener" href="https://repo1.maven.org/maven2/">https://repo1.maven.org/maven2/</a></li>
+<li>远程仓库(私服)：一般由公司团队搭建的私有仓库</li>
+</ul>
+<p>jar包的查找顺序，本地仓库 –&gt; 远程仓库–&gt; 中央仓库</p>
+<h4 id="安装MaVen"><a href="#安装MaVen" class="headerlink" title="安装MaVen"></a>安装MaVen</h4><p>下载Maven安装包，链接<a target="_blank" rel="noopener" href="https://maven.apache.org/download.cgi">https://maven.apache.org/download.cgi</a></p>
+<p>解压安装包</p>
+<p>配置环境变量，将以下的命令添加到~&#x2F;.zshrc文件中</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">export</span> MAVEN_HOME=<span class="hljs-string">&quot;/Users/liutao/tools/apache-maven-3.9.9&quot;</span><br><span class="hljs-built_in">export</span> PATH=<span class="hljs-string">&quot;<span class="hljs-variable">$MAVEN_HOME</span>/bin:<span class="hljs-variable">$PATH</span>&quot;</span><br></code></pre></td></tr></table></figure>
+
+
+
+<p>maven坐标3组成</p>
+<ul>
+<li>groupId：定义当前Maven项目隶属组织名称（通常是域名反写，例如：com.itheima）</li>
+<li>artifactId：定义当前Maven项目名称（通常是模块名称，例如 order-service、goods-service）</li>
+<li>version：定义当前项目版本号<ul>
+<li>SNAPSHOT: 功能不稳定、尚处于开发中的版本，即快照版本</li>
+<li>RELEASE: 功能趋于稳定、当前更新停止，可以用于发行的版本</li>
+</ul>
+</li>
+</ul>
+<h3 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h3><p>（重点在于尝试）</p>
+<h3 id="SpringBootWeb"><a href="#SpringBootWeb" class="headerlink" title="SpringBootWeb"></a>SpringBootWeb</h3><p>静态资源，HTML，CSS，JavaScript</p>
+<p>动态资源，会根据用户请求和其他数据动态生成的，内容可能会在每次请求时都发生变化。Spring Framework</p>
+<p>java程序开发的动态资源来说，我们通常会将这些动态资源部署在<strong>Tomcat</strong>，这样的Web服务器中运行</p>
+<h3 id="Http协议"><a href="#Http协议" class="headerlink" title="Http协议"></a>Http协议</h3><p><strong>基于TCP协议</strong></p>
+<p><strong>基于请求-响应模型</strong></p>
+<p>请求和响应是一一对应关系</p>
+<p><strong>HTTP协议是无状态协议</strong></p>
+<ul>
+<li>缺点:  多次请求间不能共享数据</li>
+<li>优点:  速度快</li>
+</ul>
+<p>?京东购物。加入购物车和去购物车结算是两次请求</p>
+<p>提出了使用会话技术(Cookie、Session)来解决这个问题</p>
+<p>HTTP协议又分为：请求协议和响应协议</p>
+<h3 id="HTTP请求协议"><a href="#HTTP请求协议" class="headerlink" title="HTTP请求协议"></a>HTTP请求协议</h3><p><strong>请求行、请求头 、请求体</strong></p>
+<p>![image-20250104201559849](&#x2F;Users&#x2F;liutao&#x2F;Library&#x2F;Application Support&#x2F;typora-user-images&#x2F;image-20250104201559849.png)</p>
+<ul>
+<li><p><strong>请求行</strong>(以上图中红色部分) ：HTTP请求中的第一行数据。由：<code>请求方式</code>、<code>资源路径</code>、<code>协议/版本</code>组成（之间使用空格分隔）</p>
+</li>
+<li><p>资源路径：&#x2F;brand&#x2F;findAll?name&#x3D;OPPO&amp;status&#x3D;1</p>
+<ul>
+<li>请求路径：&#x2F;brand&#x2F;findAll</li>
+<li>请求参数：name&#x3D;OPPO&amp;status&#x3D;1<ul>
+<li>请求参数是以key&#x3D;value形式出现</li>
+<li>多个请求参数之间使用<code>&amp;</code>连接</li>
+</ul>
+</li>
+<li>请求路径和请求参数之间使用<code>?</code>连接</li>
+</ul>
+</li>
+<li><p><strong>请求头</strong>(以上图中黄色部分) ：第二行开始，上图黄色部分内容就是请求头。格式为key: value形式 </p>
+<ul>
+<li>http是个无状态的协议，所以在请求头设置浏览器的一些自身信息和想要响应的形式。这样服务器在收到信息后，就可以知道是谁，想干什么了</li>
+</ul>
+</li>
+<li><p>常见的HTTP请求头有:</p>
+<ul>
+<li><table>
+<thead>
+<tr>
+<th>请求头</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Host</td>
+<td>表示请求的主机名</td>
+</tr>
+<tr>
+<td>User-Agent</td>
+<td>浏览器版本。 例如：Chrome浏览器的标识类似Mozilla&#x2F;5.0 …Chrome&#x2F;79 ，IE浏览器的标识类似Mozilla&#x2F;5.0 (Windows NT …)like Gecko</td>
+</tr>
+<tr>
+<td>Accept</td>
+<td>表示浏览器能接收的资源类型，如text&#x2F;*，image&#x2F;<em>或者</em>&#x2F;*表示所有；</td>
+</tr>
+<tr>
+<td>Accept-Language</td>
+<td>表示浏览器偏好的语言，服务器可以据此返回不同语言的网页；</td>
+</tr>
+<tr>
+<td>Accept-Encoding</td>
+<td>表示浏览器可以支持的压缩类型，例如gzip, deflate等。</td>
+</tr>
+<tr>
+<td>Content-Type</td>
+<td>请求主体的数据类型</td>
+</tr>
+<tr>
+<td>Content-Length</td>
+<td>数据主体的大小（单位：字节）</td>
+</tr>
+</tbody></table>
+</li>
+</ul>
+</li>
+<li><p>请求体 ：存储请求参数</p>
+<ul>
+<li>GET请求的请求参数在请求行中，故不需要设置请求体</li>
+</ul>
+</li>
+<li><p><strong>POST方式的请求协议</strong></p>
+</li>
+<li><p><strong>请求体</strong>(以上图中绿色部分) ：存储请求参数 </p>
+<ul>
+<li>请求体和请求头之间是有一个空行隔开（作用：用于标记请求头结束）</li>
+</ul>
+<h3 id="HTTP响应协议"><a href="#HTTP响应协议" class="headerlink" title="HTTP响应协议"></a>HTTP响应协议</h3><p><strong>响应行 、响应头 、响应体</strong></p>
+<ul>
+<li>响应行(以上图中红色部分)：响应数据的第一行。响应行由<code>协议及版本</code>、<code>响应状态码</code>、<code>状态码描述</code>组成</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>状态码分类</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1xx</td>
+<td>响应中 — 临时状态码。表示请求已经接受，告诉客户端应该继续请求或者如果已经完成则忽略</td>
+</tr>
+<tr>
+<td>2xx</td>
+<td>成功 — 表示请求已经被成功接收，处理已完成</td>
+</tr>
+<tr>
+<td>3xx</td>
+<td>重定向 — 重定向到其它地方，让客户端再发起一个请求以完成整个处理</td>
+</tr>
+<tr>
+<td>4xx</td>
+<td>客户端错误 — 处理发生错误，责任在客户端，如：客户端的请求一个不存在的资源，客户端未被授权，禁止访问等</td>
+</tr>
+<tr>
+<td>5xx</td>
+<td>服务器端错误 — 处理发生错误，责任在服务端，如：服务端抛出异常，路由出错，HTTP版本不支持等</td>
+</tr>
+</tbody></table>
+<ul>
+<li><p>响应头(以上图中黄色部分)：响应数据的第二行开始。格式为key：value形式</p>
+<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs pgsql">Content-<span class="hljs-keyword">Type</span>：表示该响应内容的类型，例如<span class="hljs-type">text</span>/html，image/jpeg ；<br><br>Content-Length：表示该响应内容的长度（字节数）；<br><br>Content-<span class="hljs-keyword">Encoding</span>：表示该响应压缩算法，例如gzip ；<br><br><span class="hljs-keyword">Cache</span>-Control：指示客户端应如何缓存，例如max-age=<span class="hljs-number">300</span>表示可以最多缓存<span class="hljs-number">300</span>秒 ;<br><br><span class="hljs-keyword">Set</span>-Cookie: 告诉浏览器为当前页面所在的域设置cookie<br></code></pre></td></tr></table></figure>
+
+
+</li>
+<li><p>响应体(以上图中绿色部分)： 响应数据的最后一部分。存储响应的数据</p>
+<ul>
+<li>响应体和响应头之间有一个空行隔开（作用：用于标记响应头结束）</li>
+</ul>
+</li>
+<li></li>
+<li></li>
+</ul>
+</li>
+</ul>
+<h3 id="分层解耦"><a href="#分层解耦" class="headerlink" title="分层解耦"></a>分层解耦</h3><ol>
+<li><h3 id="三层架构"><a href="#三层架构" class="headerlink" title="三层架构"></a>三层架构</h3></li>
+</ol>
+<p>单一职责原则：一个类或一个方法，就只做一件事情，只管一块功能。</p>
+<p>这样就可以让类、接口、方法的复杂度更低，可读性更强，扩展性更好，也更利于后期的维护。</p>
+<ul>
+<li>Controller：控制层。接收前端发送的请求，对请求进行处理，并响应数据。</li>
+<li>Service：业务逻辑层。处理具体的业务逻辑。</li>
+<li>Dao：数据访问层(Data Access Object)，也称为持久层。负责数据访问操作，包括数据的增、删、改、查。</li>
+</ul>
+<p>![image-20250104220004637](&#x2F;Users&#x2F;liutao&#x2F;Library&#x2F;Application Support&#x2F;typora-user-images&#x2F;image-20250104220004637.png)</p>
+<ol>
+<li>解耦</li>
+</ol>
+<p>Service中调用Dao层中的内容，称为层与层之间的耦合</p>
+<h4 id="解耦思路"><a href="#解耦思路" class="headerlink" title="解耦思路"></a>解耦思路</h4>
                 
               </div>
             
