@@ -27,7 +27,7 @@
 <meta property="og:description" content="JavaWeb介绍![image-20241209170002293](&#x2F;Users&#x2F;liutao&#x2F;Library&#x2F;Application Support&#x2F;typora-user-images&#x2F;image-20241209170002293.png) 技术栈 ![image-20241209170130894](&#x2F;Users&amp;#">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2024-12-09T08:53:27.000Z">
-<meta property="article:modified_time" content="2025-01-03T14:02:04.691Z">
+<meta property="article:modified_time" content="2025-01-04T04:56:53.879Z">
 <meta property="article:author" content="Fatear">
 <meta name="twitter:card" content="summary_large_image">
   
@@ -237,7 +237,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          728 字
+          738 字
         
       </span>
     
@@ -317,56 +317,119 @@
 <p>方式2</p>
 <script src = "js/demo.js"></script>
 
-<p>不能自闭合<script src /></p>
-<h3 id="js语法"><a href="#js语法" class="headerlink" title="js语法"></a>js语法</h3><h4 id="输出"><a href="#输出" class="headerlink" title="输出"></a>输出</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs JavaScript"><span class="hljs-comment">//警告框</span><br>windows.<span class="hljs-title function_">alert</span>()<br><span class="hljs-comment">//在HTML中写入内容</span><br><span class="hljs-variable language_">document</span>.<span class="hljs-title function_">write</span>()<br><span class="hljs-comment">//写入浏览器控制台</span><br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>()<br><span class="hljs-comment">//变量</span><br><span class="hljs-keyword">let</span> a= <span class="hljs-number">90</span>;<br><span class="hljs-comment">//常量</span><br><span class="hljs-keyword">const</span> <span class="hljs-variable constant_">PI</span> = <span class="hljs-number">3.1415926</span>;<br><br></code></pre></td></tr></table></figure>
+<p>不能自闭合</p>
+<script src />
 
-<h4 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h4><p>number（整数，小数，Nan）</p>
-<p>String  "",'',``</p>
-<p>boolean</p>
-<p>null</p>
-<p>undefined</p>
-<p>使用typeof返回类型</p>
-<p>typeof 12;</p>
-<h4 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">function</span> <span class="hljs-title function_">func</span>(<span class="hljs-params">参数<span class="hljs-number">1</span>,参数<span class="hljs-number">2</span>,...</span>)&#123;<br>	<span class="hljs-comment">//code</span><br>&#125;<br></code></pre></td></tr></table></figure>
+### js语法
 
-<ul>
-<li>形参不需要声明类型，并且JS中不管什么类型都是let去声明，加上也没有意义。</li>
-<li>返回值也不需要声明类型，直接return即可</li>
-</ul>
+#### 输出
+
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs JavaScript"><span class="hljs-comment">//警告框</span><br>windows.<span class="hljs-title function_">alert</span>()<br><span class="hljs-comment">//在HTML中写入内容</span><br><span class="hljs-variable language_">document</span>.<span class="hljs-title function_">write</span>()<br><span class="hljs-comment">//写入浏览器控制台</span><br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>()<br><span class="hljs-comment">//变量</span><br><span class="hljs-keyword">let</span> a= <span class="hljs-number">90</span>;<br><span class="hljs-comment">//常量</span><br><span class="hljs-keyword">const</span> <span class="hljs-variable constant_">PI</span> = <span class="hljs-number">3.1415926</span>;<br><br></code></pre></td></tr></table></figure>
+
+#### 数据类型
+
+number（整数，小数，Nan）
+
+String  "",'',``
+
+boolean
+
+null
+
+undefined
+
+使用typeof返回类型
+
+typeof 12;
+
+#### 函数
+
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">function</span> <span class="hljs-title function_">func</span>(<span class="hljs-params">参数<span class="hljs-number">1</span>,参数<span class="hljs-number">2</span>,...</span>)&#123;<br>	<span class="hljs-comment">//code</span><br>&#125;<br></code></pre></td></tr></table></figure>
+
+- 形参不需要声明类型，并且JS中不管什么类型都是let去声明，加上也没有意义。
+- 返回值也不需要声明类型，直接return即可
+
+
+
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs javaScript"><span class="hljs-keyword">let</span> result = <span class="hljs-keyword">function</span>(<span class="hljs-params">a,b</span>)&#123;<span class="hljs-keyword">return</span> a+b;&#125;<br><span class="hljs-keyword">let</span> <span class="hljs-title function_">result2</span> = (<span class="hljs-params">a,b</span>)=&gt;&#123;<span class="hljs-keyword">return</span> a+b;&#125;<br></code></pre></td></tr></table></figure>
 
-<h4 id="自定义对象"><a href="#自定义对象" class="headerlink" title="自定义对象"></a>自定义对象</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs javaScript"><span class="hljs-keyword">let</span> <span class="hljs-title class_">Object1</span> = &#123;<br>	属性<span class="hljs-number">1</span>：值，<br>	属性<span class="hljs-number">2</span>：值，<br>	方法名称:<span class="hljs-keyword">function</span>(<span class="hljs-params">参数列表</span>)&#123;&#125;<br>&#125;;<br><br><span class="hljs-comment">//调用</span><br><span class="hljs-title class_">Object1</span>.属性名<br><span class="hljs-title class_">Object2</span>.方法名()<br></code></pre></td></tr></table></figure>
+#### 自定义对象
 
-<h4 id="Json"><a href="#Json" class="headerlink" title="Json"></a>Json</h4><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs json"><span class="hljs-comment">//json格式</span><br><span class="hljs-punctuation">&#123;</span><br><span class="hljs-attr">&quot;key&quot;</span><span class="hljs-punctuation">:</span>value<span class="hljs-punctuation">,</span><br><span class="hljs-attr">&quot;key&quot;</span><span class="hljs-punctuation">:</span>value<span class="hljs-punctuation">,</span><br><span class="hljs-attr">&quot;key&quot;</span><span class="hljs-punctuation">:</span>value<br><span class="hljs-punctuation">&#125;</span><br><br><br><span class="hljs-comment">//3. JSON - JS对象标记法</span><br>let person = <span class="hljs-punctuation">&#123;</span><br>  name<span class="hljs-punctuation">:</span> &#x27;itcast&#x27;<span class="hljs-punctuation">,</span><br>  age<span class="hljs-punctuation">:</span> <span class="hljs-number">18</span><span class="hljs-punctuation">,</span><br>  gender<span class="hljs-punctuation">:</span> &#x27;男&#x27;<br><span class="hljs-punctuation">&#125;</span><br>alert(JSON.stringify(person)); <span class="hljs-comment">//js对象 --&gt; json字符串</span><br><br>let personJson = &#x27;<span class="hljs-punctuation">&#123;</span><span class="hljs-attr">&quot;name&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;heima&quot;</span><span class="hljs-punctuation">,</span> <span class="hljs-attr">&quot;age&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">18</span><span class="hljs-punctuation">&#125;</span>&#x27;;<br>alert(JSON.parse(personJson).name);<br></code></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs javaScript"><span class="hljs-keyword">let</span> <span class="hljs-title class_">Object1</span> = &#123;<br>	属性<span class="hljs-number">1</span>：值，<br>	属性<span class="hljs-number">2</span>：值，<br>	方法名称:<span class="hljs-keyword">function</span>(<span class="hljs-params">参数列表</span>)&#123;&#125;<br>&#125;;<br><br><span class="hljs-comment">//调用</span><br><span class="hljs-title class_">Object1</span>.属性名<br><span class="hljs-title class_">Object2</span>.方法名()<br></code></pre></td></tr></table></figure>
 
-<p>JSON.stringify(...)：作用就是将js对象，转换为json格式的字符串。</p>
-<p>JSON.parse(...)：作用就是将json格式的字符串，转为js对象。</p>
-<h4 id="JS-DOM"><a href="#JS-DOM" class="headerlink" title="JS DOM"></a>JS DOM</h4><ul>
-<li>Document：整个文档对象</li>
-<li>Element：元素对象</li>
-<li>Attribute：属性对象</li>
-<li>Text：文本对象</li>
-<li>Comment：注释对象</li>
-</ul>
-<p>![image-20250103203709155](/Users/liutao/Library/Application Support/typora-user-images/image-20250103203709155.png)</p>
-<p>DOM操作</p>
-<h4 id="获取DOM元素对象"><a href="#获取DOM元素对象" class="headerlink" title="获取DOM元素对象"></a>获取DOM元素对象</h4><p>操作DOM对象的属性或者方法</p>
+#### Json
+
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs json"><span class="hljs-comment">//json格式</span><br><span class="hljs-punctuation">&#123;</span><br><span class="hljs-attr">&quot;key&quot;</span><span class="hljs-punctuation">:</span>value<span class="hljs-punctuation">,</span><br><span class="hljs-attr">&quot;key&quot;</span><span class="hljs-punctuation">:</span>value<span class="hljs-punctuation">,</span><br><span class="hljs-attr">&quot;key&quot;</span><span class="hljs-punctuation">:</span>value<br><span class="hljs-punctuation">&#125;</span><br><br><br><span class="hljs-comment">//3. JSON - JS对象标记法</span><br>let person = <span class="hljs-punctuation">&#123;</span><br>  name<span class="hljs-punctuation">:</span> &#x27;itcast&#x27;<span class="hljs-punctuation">,</span><br>  age<span class="hljs-punctuation">:</span> <span class="hljs-number">18</span><span class="hljs-punctuation">,</span><br>  gender<span class="hljs-punctuation">:</span> &#x27;男&#x27;<br><span class="hljs-punctuation">&#125;</span><br>alert(JSON.stringify(person)); <span class="hljs-comment">//js对象 --&gt; json字符串</span><br><br>let personJson = &#x27;<span class="hljs-punctuation">&#123;</span><span class="hljs-attr">&quot;name&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;heima&quot;</span><span class="hljs-punctuation">,</span> <span class="hljs-attr">&quot;age&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">18</span><span class="hljs-punctuation">&#125;</span>&#x27;;<br>alert(JSON.parse(personJson).name);<br></code></pre></td></tr></table></figure>
+
+JSON.stringify(...)：作用就是将js对象，转换为json格式的字符串。
+
+JSON.parse(...)：作用就是将json格式的字符串，转为js对象。
+
+#### JS DOM
+
+- Document：整个文档对象
+- Element：元素对象
+- Attribute：属性对象
+- Text：文本对象
+- Comment：注释对象
+
+![image-20250103203709155](/Users/liutao/Library/Application Support/typora-user-images/image-20250103203709155.png)
+
+DOM操作
+
+#### 获取DOM元素对象
+
+操作DOM对象的属性或者方法
+
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">//根据CSS选择器来获取DOM元素，获取到匹配到的第一个元素：document.querySelector(&#x27;CSS选择器&#x27;);</span><br><span class="hljs-comment">//据CSS选择器来获取DOM元素，获取匹配到的所有元素：document.querySelectorAll(&#x27;CSS选择器&#x27;);</span><br><br></code></pre></td></tr></table></figure>
 
-<h4 id="JS监听事件"><a href="#JS监听事件" class="headerlink" title="JS监听事件"></a>JS监听事件</h4><p>HTML事件是发生在HTML元素上的 “事情”</p>
-<p>给这些事件绑定函数，当事件触发时，可以自动的完成对应的功能，这就是事件监听。</p>
+#### JS监听事件
+
+HTML事件是发生在HTML元素上的 “事情”
+
+给这些事件绑定函数，当事件触发时，可以自动的完成对应的功能，这就是事件监听。
+
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">//语法</span><br>事件源.<span class="hljs-title function_">addEventListener</span>(<span class="hljs-string">&quot;事件类型&quot;</span>,要执行的函数);<br><span class="hljs-comment">//事件源: 哪个dom元素触发了事件, 要获取dom元素</span><br><span class="hljs-comment">//事件类型: 用什么方式触发, 比如: 鼠标单击 click, 鼠标经过 mouseover</span><br><span class="hljs-comment">//要执行的函数: 要做什么事</span><br></code></pre></td></tr></table></figure>
 
-<h4 id="常见事件"><a href="#常见事件" class="headerlink" title="常见事件"></a>常见事件</h4><h5 id="鼠标"><a href="#鼠标" class="headerlink" title="鼠标"></a>鼠标</h5><p>click</p>
-<p>mouseenter</p>
-<p>mouseleave</p>
-<h5 id="键盘"><a href="#键盘" class="headerlink" title="键盘"></a>键盘</h5><p>keydown</p>
-<p>Keyup</p>
-<h5 id="焦点：指用户与网页上可交互元素（如输入框、按钮、链接等）进行交互时，系统对该元素的“关注”状态。可以粗浅的认为是光标"><a href="#焦点：指用户与网页上可交互元素（如输入框、按钮、链接等）进行交互时，系统对该元素的“关注”状态。可以粗浅的认为是光标" class="headerlink" title="焦点：指用户与网页上可交互元素（如输入框、按钮、链接等）进行交互时，系统对该元素的“关注”状态。可以粗浅的认为是光标"></a>焦点：指用户与网页上可交互元素（如输入框、按钮、链接等）进行交互时，系统对该元素的“关注”状态。可以粗浅的认为是光标</h5><p>focus</p>
-<p>Blur</p>
-<h5 id="表单"><a href="#表单" class="headerlink" title="表单"></a>表单</h5><p>input</p>
-<p>submit</p>
-<h3 id="Vue框架"><a href="#Vue框架" class="headerlink" title="Vue框架"></a>Vue框架</h3><h5 id="Vue快速入门"><a href="#Vue快速入门" class="headerlink" title="Vue快速入门"></a>Vue快速入门</h5><h5 id="Vue常用指令"><a href="#Vue常用指令" class="headerlink" title="Vue常用指令"></a>Vue常用指令</h5><h5 id="Vue声明周期"><a href="#Vue声明周期" class="headerlink" title="Vue声明周期"></a>Vue声明周期</h5>
+#### 常见事件
+
+##### 鼠标
+
+click
+
+mouseenter
+
+mouseleave
+
+##### 键盘
+
+keydown
+
+Keyup
+
+##### 焦点：指用户与网页上可交互元素（如输入框、按钮、链接等）进行交互时，系统对该元素的“关注”状态。可以粗浅的认为是光标
+
+focus
+
+Blur
+
+##### 表单
+
+input
+
+submit
+
+### Vue框架
+
+##### Vue快速入门
+
+
+
+##### Vue常用指令
+
+##### Vue声明周期
+
+
                 
               </div>
             
