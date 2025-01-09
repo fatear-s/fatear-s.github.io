@@ -1160,6 +1160,8 @@ IPV6
 
 TCP
 
+![image-20250108132454743](/Users/liutao/Library/Application Support/typora-user-images/image-20250108132454743.png)
+
 UDP
 
 #### UDP

@@ -244,3 +244,296 @@ submit
 
 ##### Vue声明周期
 
+
+
+### Maven
+
+#### 依赖管理
+
+之前的项目中，需要下载jar包，使用maven只需要配置xml文件
+
+#### 项目构建
+
+#### 统一的项目结构
+
+不同IDE会产生不同的结构，但是使用maven是统一的架构，都可以使用
+
+- 项目对象模型 (Project Object Model)
+- 依赖管理模型(Dependency)
+- 构建生命周期/阶段(Build lifecycle & phases)
+
+#### 项目对象模型
+
+将我们自己的项目抽象成一个对象模型，有自己专属的坐标
+
+坐标，就是资源(jar包)的唯一标识，通过坐标可以定位到所需资源(jar包)位置。
+
+坐标的组成部分：
+
+- groupId: 组织名
+- arfitactId: 模块名
+- Version: 版本号
+
+#### 依赖管理模型
+
+现在我们只需要在pom.xml中配置依赖的配置文件即可。 而这个依赖对应的jar包其实就在我们本地电脑上的maven仓库中。 
+
+
+
+1. 在pom.xml中编写`<dependencies>`标签
+2. 在`<dependencies>`标签中使用`<dependency>`引入坐标
+3. 定义坐标的 `groupId`、`artifactId`、`version`
+4. 点击刷新按钮，引入最新加入的坐标
+
+```HTML
+<dependencies>
+    <!-- 依赖 : spring-context -->
+    <dependency>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-context</artifactId>
+        <version>6.1.4</version>
+    </dependency>
+</dependencies>
+```
+
+如果不知道依赖的坐标信息，可以到mvn的中央仓库（https://mvnrepository.com/）中搜索
+
+IDEA （Alt + Insert）搜索
+
+#### 依赖传递
+
+我们可以通过Maven中的排除依赖功能，来将这个依赖排除掉。
+
+#### 依赖排除
+
+```HTML
+<dependency>
+    <groupId>org.springframework</groupId>
+    <artifactId>spring-context</artifactId>
+    <version>6.1.4</version>
+
+    <!--排除依赖, 主动断开依赖的资源-->
+    <exclusions>
+        <exclusion>
+            <groupId>io.micrometer</groupId>
+            <artifactId>micrometer-observation</artifactId>
+        </exclusion>
+    </exclusions>
+</dependency>
+```
+
+#### 依赖范围控制
+
+在maven中，如果希望限制依赖的使用范围，可以通过 `<scope>…</scope>` 设置其作用范围。
+
+### maven仓库
+
+Maven仓库分为：
+
+- 本地仓库：自己计算机上的一个目录(用来存储jar包)
+- 中央仓库：由Maven团队维护的全球唯一的。仓库地址：https://repo1.maven.org/maven2/
+- 远程仓库(私服)：一般由公司团队搭建的私有仓库
+
+jar包的查找顺序，本地仓库 --> 远程仓库--> 中央仓库
+
+
+
+#### 安装MaVen
+
+下载Maven安装包，链接https://maven.apache.org/download.cgi
+
+解压安装包
+
+配置环境变量，将以下的命令添加到~/.zshrc文件中
+
+```bash
+export MAVEN_HOME="/Users/liutao/tools/apache-maven-3.9.9"
+export PATH="$MAVEN_HOME/bin:$PATH"
+```
+
+
+
+maven坐标3组成
+
+- groupId：定义当前Maven项目隶属组织名称（通常是域名反写，例如：com.itheima）
+- artifactId：定义当前Maven项目名称（通常是模块名称，例如 order-service、goods-service）
+- version：定义当前项目版本号
+  - SNAPSHOT: 功能不稳定、尚处于开发中的版本，即快照版本
+  - RELEASE: 功能趋于稳定、当前更新停止，可以用于发行的版本
+
+
+
+### 测试
+
+（重点在于尝试）
+
+
+
+### SpringBootWeb
+
+静态资源，HTML，CSS，JavaScript
+
+动态资源，会根据用户请求和其他数据动态生成的，内容可能会在每次请求时都发生变化。Spring Framework
+
+java程序开发的动态资源来说，我们通常会将这些动态资源部署在**Tomcat**，这样的Web服务器中运行
+
+
+
+
+
+### Http协议
+
+**基于TCP协议**
+
+**基于请求-响应模型**
+
+请求和响应是一一对应关系
+
+**HTTP协议是无状态协议**
+
+- 缺点:  多次请求间不能共享数据
+- 优点:  速度快
+
+?京东购物。加入购物车和去购物车结算是两次请求
+
+提出了使用会话技术(Cookie、Session)来解决这个问题
+
+
+
+HTTP协议又分为：请求协议和响应协议
+
+### HTTP请求协议
+
+**请求行、请求头 、请求体**
+
+![image-20250104201559849](/Users/liutao/Library/Application Support/typora-user-images/image-20250104201559849.png)
+
+- **请求行**(以上图中红色部分) ：HTTP请求中的第一行数据。由：`请求方式`、`资源路径`、`协议/版本`组成（之间使用空格分隔）
+
+- 资源路径：/brand/findAll?name=OPPO&status=1
+
+  - 请求路径：/brand/findAll
+  - 请求参数：name=OPPO&status=1
+    - 请求参数是以key=value形式出现
+    - 多个请求参数之间使用`&`连接
+  - 请求路径和请求参数之间使用`?`连接 
+
+- **请求头**(以上图中黄色部分) ：第二行开始，上图黄色部分内容就是请求头。格式为key: value形式 
+
+  - http是个无状态的协议，所以在请求头设置浏览器的一些自身信息和想要响应的形式。这样服务器在收到信息后，就可以知道是谁，想干什么了
+
+- 常见的HTTP请求头有:
+
+  - | 请求头          | 含义                                                         |
+    | --------------- | ------------------------------------------------------------ |
+    | Host            | 表示请求的主机名                                             |
+    | User-Agent      | 浏览器版本。 例如：Chrome浏览器的标识类似Mozilla/5.0 ...Chrome/79 ，IE浏览器的标识类似Mozilla/5.0 (Windows NT ...)like Gecko |
+    | Accept          | 表示浏览器能接收的资源类型，如text/*，image/*或者*/*表示所有； |
+    | Accept-Language | 表示浏览器偏好的语言，服务器可以据此返回不同语言的网页；     |
+    | Accept-Encoding | 表示浏览器可以支持的压缩类型，例如gzip, deflate等。          |
+    | Content-Type    | 请求主体的数据类型                                           |
+    | Content-Length  | 数据主体的大小（单位：字节）                                 |
+
+- 请求体 ：存储请求参数
+
+  - GET请求的请求参数在请求行中，故不需要设置请求体
+
+- **POST方式的请求协议**
+
+- **请求体**(以上图中绿色部分) ：存储请求参数 
+
+  - 请求体和请求头之间是有一个空行隔开（作用：用于标记请求头结束）
+
+  ### HTTP响应协议
+
+  **响应行 、响应头 、响应体**
+
+  - 响应行(以上图中红色部分)：响应数据的第一行。响应行由`协议及版本`、`响应状态码`、`状态码描述`组成
+
+  | 状态码分类 | 说明                                                         |
+  | ---------- | ------------------------------------------------------------ |
+  | 1xx        | 响应中 --- 临时状态码。表示请求已经接受，告诉客户端应该继续请求或者如果已经完成则忽略 |
+  | 2xx        | 成功 --- 表示请求已经被成功接收，处理已完成                  |
+  | 3xx        | 重定向 --- 重定向到其它地方，让客户端再发起一个请求以完成整个处理 |
+  | 4xx        | 客户端错误 --- 处理发生错误，责任在客户端，如：客户端的请求一个不存在的资源，客户端未被授权，禁止访问等 |
+  | 5xx        | 服务器端错误 --- 处理发生错误，责任在服务端，如：服务端抛出异常，路由出错，HTTP版本不支持等 |
+
+  - 响应头(以上图中黄色部分)：响应数据的第二行开始。格式为key：value形式
+
+    ```
+    Content-Type：表示该响应内容的类型，例如text/html，image/jpeg ；
+    
+    Content-Length：表示该响应内容的长度（字节数）；
+    
+    Content-Encoding：表示该响应压缩算法，例如gzip ；
+    
+    Cache-Control：指示客户端应如何缓存，例如max-age=300表示可以最多缓存300秒 ;
+    
+    Set-Cookie: 告诉浏览器为当前页面所在的域设置cookie
+    ```
+
+    
+
+  - 响应体(以上图中绿色部分)： 响应数据的最后一部分。存储响应的数据
+
+    - 响应体和响应头之间有一个空行隔开（作用：用于标记响应头结束）
+
+    
+
+    
+  
+    controller方法中的return的结果，怎么就可以响应给浏览器呢？
+  
+  答案：使用@ResponseBody注解
+  
+  - 类型：方法注解、类注解
+  - 位置：书写在Controller方法上或类上
+  - 作用：将方法返回值直接响应给浏览器，如果返回值类型是实体对象/集合，将会转换为JSON格式后在响应给浏览器
+  
+  在类上加了@RestController注解，而这个注解是由两个注解组合起来的，分别是：@Controller 、@ResponseBody。 那也就意味着，我们在类上已经添加了@ResponseBody注解了，而一旦在类上加了@ResponseBody注解，就相当于该类所有的方法中都已经添加了@ResponseBody注解。 
+
+
+### 分层解耦
+
+1. ### 三层架构
+
+单一职责原则：一个类或一个方法，就只做一件事情，只管一块功能。
+
+这样就可以让类、接口、方法的复杂度更低，可读性更强，扩展性更好，也更利于后期的维护。
+
+- Controller：控制层。接收前端发送的请求，对请求进行处理，并响应数据。
+- Service：业务逻辑层。处理具体的业务逻辑。
+- Dao：数据访问层(Data Access Object)，也称为持久层。负责数据访问操作，包括数据的增、删、改、查。
+
+![image-20250104220004637](/Users/liutao/Library/Application Support/typora-user-images/image-20250104220004637.png)
+
+
+
+1. 解耦
+
+Service中调用Dao层中的内容，称为层与层之间的耦合
+
+#### 解耦思路
+
+**1). 首先不能在EmpController中使用new对象。代码如下**
+
+- **控制反转：** Inversion Of Control，简称**IOC**。对象的创建控制权由程序自身转移到外部（容器），这种思想称为控制反转。
+  - 对象的创建权由程序员主动创建转移到容器(由容器创建、管理对象)。这个容器称为：IOC容器或Spring容器。
+
+- **依赖注入：** Dependency Injection，简称**DI**。容器为应用程序提供运行时，所依赖的资源，称之为依赖注入。
+  - 程序运行时需要某个资源，此时容器就为其提供这个资源。
+  - 例：EmpController程序运行时需要EmpService对象，Spring容器就为其提供并注入EmpService对象。
+- **bean对象：**IOC容器中创建、管理的对象，称之为：bean对象。
+
+
+
+在实现类加上 `@Component` 注解，就代表把当前类产生的对象交给IOC容器管理。（IOC可以造）
+
+在需要类的声明上加上**@Autowired**注解，代表注入依赖。(可以从IOC容器中取)
+
+声明bean的四大注解，要想生效，还需要被组件扫描注解 `@ComponentScan` 扫描
+
+
+
+
+
