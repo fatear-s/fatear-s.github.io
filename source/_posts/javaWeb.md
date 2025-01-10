@@ -1,4 +1,5 @@
 ---
+
 title: javaWeb
 date: 2024-12-09 16:53:27
 tags:
@@ -535,5 +536,344 @@ Service中调用Dao层中的内容，称为层与层之间的耦合
 
 
 
+包 `pojo`，专门用来存放实体类
 
+SpringBoot debug
+
+```XML
+<!--在pom.xml中添加配置-->
+<plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <excludes>
+                        <exclude>
+                            <groupId>org.projectlombok</groupId>
+                            <artifactId>lombok</artifactId>
+                        </exclude>
+                        <jvmArguments>
+                            -Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=y,address=5005
+                        </jvmArguments>
+                    </excludes>
+                </configuration>
+            </plugin>
+```
+
+# lombok java 无法将类 XX类中的构造器 X应用到给定类型
+
+打开idea 注释处理器（Annotation Processors） 路径为File ->setting -> build,execution,deploment->Compiler -> [Enable](https://so.csdn.net/so/search?q=Enable&spm=1001.2101.3001.7020) annotation processing
+
+链接：https://blog.csdn.net/qq_30683537/article/details/140888655
+
+![image-20250110193754007](/Users/liutao/Library/Application Support/typora-user-images/image-20250110193754007.png)
+
+
+
+
+
+### SQL
+
+#### DDL
+
+DDL英文全称是Data Definition Language(数据定义语言)，用来定义数据库对象(数据库、表)。
+
+
+
+查询
+
+```sql
+show database;#查询所有数据库
+select database();#查询当前数据库
+
+```
+
+创建
+
+```sql
+create database [if not exists] 数据库名 [default charset utf8mb4]
+```
+
+使用
+
+```sql
+use 数据库名;
+```
+
+删除
+
+```sql
+drop database [if exists] 数据库名;
+```
+
+#### 表操作
+
+对表结构的操作
+
+创建
+
+```sql
+create table 表名(
+	字段1 字段2类型[约束] [comment 字段1注释],
+	字段2 字段2类型2约束] [comment 字段2注释],
+	字段3 字段2类型3约束] [comment 字段3注释],
+	......
+	字段n 字段n类型[约束] [comment 字段n注释]
+)[ comment 表注释];
+```
+
+查询
+
+```sql
+-- 查询当前数据库的所有表
+show tables;
+
+-- 查看指定的表结构
+desc 表名 ;   -- 可以查看指定表的字段、字段的类型、是否可以为NULL、是否存在默认值等信息
+
+-- 查询指定表的建表语句
+show create table 表名 ;
+```
+
+添加字段
+
+```sql
+-- 添加字段
+alter table 表名 add  字段名  类型(长度)  [comment 注释]  [约束];
+
+-- 比如： 为tb_emp表添加字段qq，字段类型为 varchar(11)
+alter table tb_emp add  qq  varchar(11) comment 'QQ号码';
+```
+
+修改字段
+
+```sql
+-- 修改字段类型
+alter table 表名 modify  字段名  新数据类型(长度);
+
+-- 比如： 修改qq字段的字段类型，将其长度由11修改为13
+alter table tb_emp modify qq varchar(13) comment 'QQ号码';
+
+-- 修改字段名，字段类型
+alter table 表名 change  旧字段名  新字段名  类型(长度)  [comment 注释]  [约束];
+
+-- 比如： 修改qq字段名为 qq_num，字段类型varchar(13)
+alter table tb_emp change qq qq_num varchar(13) comment 'QQ号码';
+```
+
+删除
+
+```sql
+-- 删除字段
+alter table 表名 drop 字段名;
+
+-- 比如： 删除tb_emp表中的qq_num字段
+alter table tb_emp drop qq_num;
+```
+
+修改表名
+
+```sql
+-- 修改表名
+rename table 表名 to  新表名;
+
+-- 比如: 将当前的emp表的表名修改为tb_emp
+rename table emp to tb_emp;
+```
+
+删除表结构
+
+```sql
+-- 删除表
+drop  table [ if exists ]  表名;
+
+-- 比如：如果tb_emp表存在，则删除tb_emp表
+drop table if exists tb_emp;  -- 在删除表时，表中的全部数据也会被删除。
+```
+
+#### DML
+
+数据处理
+
+增加
+
+```sql
+#向指定字段添加数据
+insert into 表名 (字段名1, 字段名2) values (值1, 值2);
+#全部字段添加数据
+insert into 表名 values (值1, 值2, ...);
+#批量添加数据（指定字段）
+insert into 表名 (字段名1, 字段名2) values (值1, 值2), (值1, 值2);
+#批量添加数据（全部字段）
+insert into 表名 values (值1, 值2, ...), (值1, 值2, ...);
+```
+
+修改
+
+```sql
+update 表名 set 字段名1 = 值1 , 字段名2 = 值2 , .... [where 条件] ;
+```
+
+删除
+
+```sql
+delete from 表名  [where  条件] ;
+```
+
+#### DQL
+
+查询数据库表中的记录
+
+查询关键字：**SELECT**
+
+```sql
+SELECT
+        字段列表
+FROM
+        表名列表
+WHERE
+        条件列表
+GROUP  BY
+        分组字段列表
+HAVING
+        分组后条件列表
+ORDER BY
+        排序字段列表
+LIMIT
+        分页参数
+```
+
+- 基本查询（不带任何条件）
+
+```sql
+#查询多个字段
+select 字段1, 字段2, 字段3 from  表名;
+#查询所有字段（通配符）
+select *  from  表名;
+#设置别名
+select 字段1 [ as 别名1 ] , 字段2 [ as 别名2 ]  from  表名;
+#去除重复记录
+select distinct 字段列表 from  表名;
+```
+
+
+
+- 条件查询（where）
+
+```
+select  字段列表  from   表名   where   条件列表 ; -- 条件列表：意味着可以有多个条件
+```
+
+
+
+学习条件查询就是学习条件的构建方式，而在SQL语句当中构造条件的运算符分为两类：
+
+- 比较运算符
+- 逻辑运算符
+
+常用的比较运算符如下: 
+
+| 比较运算符          | 功能                                     |
+| ------------------- | ---------------------------------------- |
+| >                   | 大于                                     |
+| >=                  | 大于等于                                 |
+| <                   | 小于                                     |
+| <=                  | 小于等于                                 |
+| =                   | 等于                                     |
+| <> 或 !=            | 不等于                                   |
+| between ... and ... | 在某个范围之内(含最小、最大值)           |
+| in(...)             | 在in之后的列表中的值，多选一             |
+| like 占位符         | 模糊匹配(_匹配单个字符, %匹配任意个字符) |
+| is null             | 是null                                   |
+
+常用的逻辑运算符如下:
+
+| 逻辑运算符 | 功能                        |
+| ---------- | --------------------------- |
+| and 或 &&  | 并且 (多个条件同时成立)     |
+| or 或 \|\| | 或者 (多个条件任意一个成立) |
+| not 或 !   | 非 , 不是                   |
+
+注意：查询为NULL的数据时，不能使用 `= null` 或 `！=null` 。得使用 `is null` 或 `is not null`。
+
+
+
+
+
+- 聚合函数
+
+之前我们做的查询都是横向查询，就是根据条件一行一行的进行判断，而使用聚合函数查询就是纵向查询，它是对一列的值进行计算，然后返回一个结果值。（将一列数据作为一个整体，进行纵向计算）
+
+常用聚合函数：
+
+| 函数  | 功能     |
+| ----- | -------- |
+| count | 统计数量 |
+| max   | 最大值   |
+| min   | 最小值   |
+| avg   | 平均值   |
+| sum   | 求和     |
+
+注意 : 聚合函数会忽略空值，对NULL值不作为统计。
+
+
+
+- 分组查询（group by）
+
+```sql
+select  字段列表  from  表名  [where 条件]  group by 分组字段名  [having 分组后过滤条件];
+```
+
+分组之后，查询的字段一般为聚合函数和分组字段，查询其他字段无任何意义
+
+执行顺序：where > 聚合函数 > having 
+
+
+
+执行时机不同：where是分组之前进行过滤，不满足where条件，不参与分组；而having是分组之后对结果进行过滤。
+
+
+
+判断条件不同：where不能对聚合函数进行判断，而having可以。
+
+
+
+
+
+
+
+- 排查查询
+
+
+
+```sql
+select  字段列表  
+from   表名   
+[where  条件列表] 
+[group by  分组字段 ] 
+order  by  字段1  排序方式1 , 字段2  排序方式2 … ;
+```
+
+排序方式：
+
+ASC ：升序（默认值）
+
+DESC：降序
+
+
+
+- 分页查询（limit）
+
+```sql
+select  字段列表  from  表名  limit  起始索引, 查询记录数 ;
+```
+
+1. 起始索引从0开始。           计算公式 ：起始索引 = （查询页码 - 1）* 每页显示记录数
+2. 分页查询是数据库的方言，不同的数据库有不同的实现，MySQL中是LIMIT
+3. 如果查询的是第一页数据，起始索引可以省略，直接简写为 limit  条数
+
+
+
+### JDBC
+
+**就是使用Java语言操作关系型数据库的一套API**
 
