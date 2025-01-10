@@ -27,7 +27,7 @@
 <meta property="og:description" content="JavaWeb介绍![image-20241209170002293](&#x2F;Users&#x2F;liutao&#x2F;Library&#x2F;Application Support&#x2F;typora-user-images&#x2F;image-20241209170002293.png) 技术栈 ![image-20241209170130894](&#x2F;Users&amp;#">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2024-12-09T08:53:27.000Z">
-<meta property="article:modified_time" content="2025-01-09T13:48:12.196Z">
+<meta property="article:modified_time" content="2025-01-10T13:47:15.912Z">
 <meta property="article:author" content="Fatear">
 <meta name="twitter:card" content="summary_large_image">
   
@@ -237,7 +237,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          3.2k 字
+          4.8k 字
         
       </span>
     
@@ -248,7 +248,7 @@
         
         
         
-          27 分钟
+          40 分钟
         
       </span>
     
@@ -598,6 +598,214 @@
 <p>在实现类加上 <code>@Component</code> 注解，就代表把当前类产生的对象交给IOC容器管理。（IOC可以造）</p>
 <p>在需要类的声明上加上**@Autowired**注解，代表注入依赖。(可以从IOC容器中取)</p>
 <p>声明bean的四大注解，要想生效，还需要被组件扫描注解 <code>@ComponentScan</code> 扫描</p>
+<p>包 <code>pojo</code>，专门用来存放实体类</p>
+<p>SpringBoot debug</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs XML"><span class="hljs-comment">&lt;!--在pom.xml中添加配置--&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">plugin</span>&gt;</span><br>                <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.springframework.boot<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>                <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>spring-boot-maven-plugin<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>                <span class="hljs-tag">&lt;<span class="hljs-name">configuration</span>&gt;</span><br>                    <span class="hljs-tag">&lt;<span class="hljs-name">excludes</span>&gt;</span><br>                        <span class="hljs-tag">&lt;<span class="hljs-name">exclude</span>&gt;</span><br>                            <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.projectlombok<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>                            <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>lombok<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>                        <span class="hljs-tag">&lt;/<span class="hljs-name">exclude</span>&gt;</span><br>                        <span class="hljs-tag">&lt;<span class="hljs-name">jvmArguments</span>&gt;</span><br>                            -Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=y,address=5005<br>                        <span class="hljs-tag">&lt;/<span class="hljs-name">jvmArguments</span>&gt;</span><br>                    <span class="hljs-tag">&lt;/<span class="hljs-name">excludes</span>&gt;</span><br>                <span class="hljs-tag">&lt;/<span class="hljs-name">configuration</span>&gt;</span><br>            <span class="hljs-tag">&lt;/<span class="hljs-name">plugin</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<h1 id="lombok-java-无法将类-XX类中的构造器-X应用到给定类型"><a href="#lombok-java-无法将类-XX类中的构造器-X应用到给定类型" class="headerlink" title="lombok java 无法将类 XX类中的构造器 X应用到给定类型"></a>lombok java 无法将类 XX类中的构造器 X应用到给定类型</h1><p>打开idea 注释处理器（Annotation Processors） 路径为File -&gt;setting -&gt; build,execution,deploment-&gt;Compiler -&gt; <a target="_blank" rel="noopener" href="https://so.csdn.net/so/search?q=Enable&spm=1001.2101.3001.7020">Enable</a> annotation processing</p>
+<p>链接：<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_30683537/article/details/140888655">https://blog.csdn.net/qq_30683537/article/details/140888655</a></p>
+<p>![image-20250110193754007](&#x2F;Users&#x2F;liutao&#x2F;Library&#x2F;Application Support&#x2F;typora-user-images&#x2F;image-20250110193754007.png)</p>
+<h3 id="SQL"><a href="#SQL" class="headerlink" title="SQL"></a>SQL</h3><h4 id="DDL"><a href="#DDL" class="headerlink" title="DDL"></a>DDL</h4><p>DDL英文全称是Data Definition Language(数据定义语言)，用来定义数据库对象(数据库、表)。</p>
+<p>查询</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">show</span> database;#查询所有数据库<br><span class="hljs-keyword">select</span> database();#查询当前数据库<br><br></code></pre></td></tr></table></figure>
+
+<p>创建</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">create</span> database [if <span class="hljs-keyword">not</span> <span class="hljs-keyword">exists</span>] 数据库名 [<span class="hljs-keyword">default</span> charset utf8mb4]<br></code></pre></td></tr></table></figure>
+
+<p>使用</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql">use 数据库名;<br></code></pre></td></tr></table></figure>
+
+<p>删除</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">drop</span> database [if <span class="hljs-keyword">exists</span>] 数据库名;<br></code></pre></td></tr></table></figure>
+
+<h4 id="表操作"><a href="#表操作" class="headerlink" title="表操作"></a>表操作</h4><p>对表结构的操作</p>
+<p>创建</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">create</span> <span class="hljs-keyword">table</span> 表名(<br>	字段<span class="hljs-number">1</span> 字段<span class="hljs-number">2</span>类型[约束] [comment 字段<span class="hljs-number">1</span>注释],<br>	字段<span class="hljs-number">2</span> 字段<span class="hljs-number">2</span>类型<span class="hljs-number">2</span>约束] [comment 字段<span class="hljs-number">2</span>注释],<br>	字段<span class="hljs-number">3</span> 字段<span class="hljs-number">2</span>类型<span class="hljs-number">3</span>约束] [comment 字段<span class="hljs-number">3</span>注释],<br>	......<br>	字段n 字段n类型[约束] [comment 字段n注释]<br>)[ comment 表注释];<br></code></pre></td></tr></table></figure>
+
+<p>查询</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-comment">-- 查询当前数据库的所有表</span><br><span class="hljs-keyword">show</span> tables;<br><br><span class="hljs-comment">-- 查看指定的表结构</span><br><span class="hljs-keyword">desc</span> 表名 ;   <span class="hljs-comment">-- 可以查看指定表的字段、字段的类型、是否可以为NULL、是否存在默认值等信息</span><br><br><span class="hljs-comment">-- 查询指定表的建表语句</span><br><span class="hljs-keyword">show</span> <span class="hljs-keyword">create</span> <span class="hljs-keyword">table</span> 表名 ;<br></code></pre></td></tr></table></figure>
+
+<p>添加字段</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-comment">-- 添加字段</span><br><span class="hljs-keyword">alter</span> <span class="hljs-keyword">table</span> 表名 <span class="hljs-keyword">add</span>  字段名  类型(长度)  [comment 注释]  [约束];<br><br><span class="hljs-comment">-- 比如： 为tb_emp表添加字段qq，字段类型为 varchar(11)</span><br><span class="hljs-keyword">alter</span> <span class="hljs-keyword">table</span> tb_emp <span class="hljs-keyword">add</span>  qq  <span class="hljs-type">varchar</span>(<span class="hljs-number">11</span>) comment <span class="hljs-string">&#x27;QQ号码&#x27;</span>;<br></code></pre></td></tr></table></figure>
+
+<p>修改字段</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-comment">-- 修改字段类型</span><br><span class="hljs-keyword">alter</span> <span class="hljs-keyword">table</span> 表名 modify  字段名  新数据类型(长度);<br><br><span class="hljs-comment">-- 比如： 修改qq字段的字段类型，将其长度由11修改为13</span><br><span class="hljs-keyword">alter</span> <span class="hljs-keyword">table</span> tb_emp modify qq <span class="hljs-type">varchar</span>(<span class="hljs-number">13</span>) comment <span class="hljs-string">&#x27;QQ号码&#x27;</span>;<br><br><span class="hljs-comment">-- 修改字段名，字段类型</span><br><span class="hljs-keyword">alter</span> <span class="hljs-keyword">table</span> 表名 change  旧字段名  新字段名  类型(长度)  [comment 注释]  [约束];<br><br><span class="hljs-comment">-- 比如： 修改qq字段名为 qq_num，字段类型varchar(13)</span><br><span class="hljs-keyword">alter</span> <span class="hljs-keyword">table</span> tb_emp change qq qq_num <span class="hljs-type">varchar</span>(<span class="hljs-number">13</span>) comment <span class="hljs-string">&#x27;QQ号码&#x27;</span>;<br></code></pre></td></tr></table></figure>
+
+<p>删除</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-comment">-- 删除字段</span><br><span class="hljs-keyword">alter</span> <span class="hljs-keyword">table</span> 表名 <span class="hljs-keyword">drop</span> 字段名;<br><br><span class="hljs-comment">-- 比如： 删除tb_emp表中的qq_num字段</span><br><span class="hljs-keyword">alter</span> <span class="hljs-keyword">table</span> tb_emp <span class="hljs-keyword">drop</span> qq_num;<br></code></pre></td></tr></table></figure>
+
+<p>修改表名</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-comment">-- 修改表名</span><br>rename <span class="hljs-keyword">table</span> 表名 <span class="hljs-keyword">to</span>  新表名;<br><br><span class="hljs-comment">-- 比如: 将当前的emp表的表名修改为tb_emp</span><br>rename <span class="hljs-keyword">table</span> emp <span class="hljs-keyword">to</span> tb_emp;<br></code></pre></td></tr></table></figure>
+
+<p>删除表结构</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-comment">-- 删除表</span><br><span class="hljs-keyword">drop</span>  <span class="hljs-keyword">table</span> [ if <span class="hljs-keyword">exists</span> ]  表名;<br><br><span class="hljs-comment">-- 比如：如果tb_emp表存在，则删除tb_emp表</span><br><span class="hljs-keyword">drop</span> <span class="hljs-keyword">table</span> if <span class="hljs-keyword">exists</span> tb_emp;  <span class="hljs-comment">-- 在删除表时，表中的全部数据也会被删除。</span><br></code></pre></td></tr></table></figure>
+
+<h4 id="DML"><a href="#DML" class="headerlink" title="DML"></a>DML</h4><p>数据处理</p>
+<p>增加</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs sql">#向指定字段添加数据<br><span class="hljs-keyword">insert</span> <span class="hljs-keyword">into</span> 表名 (字段名<span class="hljs-number">1</span>, 字段名<span class="hljs-number">2</span>) <span class="hljs-keyword">values</span> (值<span class="hljs-number">1</span>, 值<span class="hljs-number">2</span>);<br>#全部字段添加数据<br><span class="hljs-keyword">insert</span> <span class="hljs-keyword">into</span> 表名 <span class="hljs-keyword">values</span> (值<span class="hljs-number">1</span>, 值<span class="hljs-number">2</span>, ...);<br>#批量添加数据（指定字段）<br><span class="hljs-keyword">insert</span> <span class="hljs-keyword">into</span> 表名 (字段名<span class="hljs-number">1</span>, 字段名<span class="hljs-number">2</span>) <span class="hljs-keyword">values</span> (值<span class="hljs-number">1</span>, 值<span class="hljs-number">2</span>), (值<span class="hljs-number">1</span>, 值<span class="hljs-number">2</span>);<br>#批量添加数据（全部字段）<br><span class="hljs-keyword">insert</span> <span class="hljs-keyword">into</span> 表名 <span class="hljs-keyword">values</span> (值<span class="hljs-number">1</span>, 值<span class="hljs-number">2</span>, ...), (值<span class="hljs-number">1</span>, 值<span class="hljs-number">2</span>, ...);<br></code></pre></td></tr></table></figure>
+
+<p>修改</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">update</span> 表名 <span class="hljs-keyword">set</span> 字段名<span class="hljs-number">1</span> <span class="hljs-operator">=</span> 值<span class="hljs-number">1</span> , 字段名<span class="hljs-number">2</span> <span class="hljs-operator">=</span> 值<span class="hljs-number">2</span> , .... [<span class="hljs-keyword">where</span> 条件] ;<br></code></pre></td></tr></table></figure>
+
+<p>删除</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">delete</span> <span class="hljs-keyword">from</span> 表名  [<span class="hljs-keyword">where</span>  条件] ;<br></code></pre></td></tr></table></figure>
+
+<h4 id="DQL"><a href="#DQL" class="headerlink" title="DQL"></a>DQL</h4><p>查询数据库表中的记录</p>
+<p>查询关键字：<strong>SELECT</strong></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span><br>        字段列表<br><span class="hljs-keyword">FROM</span><br>        表名列表<br><span class="hljs-keyword">WHERE</span><br>        条件列表<br><span class="hljs-keyword">GROUP</span>  <span class="hljs-keyword">BY</span><br>        分组字段列表<br><span class="hljs-keyword">HAVING</span><br>        分组后条件列表<br><span class="hljs-keyword">ORDER</span> <span class="hljs-keyword">BY</span><br>        排序字段列表<br>LIMIT<br>        分页参数<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>基本查询（不带任何条件）</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs sql">#查询多个字段<br><span class="hljs-keyword">select</span> 字段<span class="hljs-number">1</span>, 字段<span class="hljs-number">2</span>, 字段<span class="hljs-number">3</span> <span class="hljs-keyword">from</span>  表名;<br>#查询所有字段（通配符）<br><span class="hljs-keyword">select</span> <span class="hljs-operator">*</span>  <span class="hljs-keyword">from</span>  表名;<br>#设置别名<br><span class="hljs-keyword">select</span> 字段<span class="hljs-number">1</span> [ <span class="hljs-keyword">as</span> 别名<span class="hljs-number">1</span> ] , 字段<span class="hljs-number">2</span> [ <span class="hljs-keyword">as</span> 别名<span class="hljs-number">2</span> ]  <span class="hljs-keyword">from</span>  表名;<br>#去除重复记录<br><span class="hljs-keyword">select</span> <span class="hljs-keyword">distinct</span> 字段列表 <span class="hljs-keyword">from</span>  表名;<br></code></pre></td></tr></table></figure>
+
+
+
+<ul>
+<li>条件查询（where）</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">select</span>  字段列表  <span class="hljs-keyword">from</span>   表名   <span class="hljs-keyword">where</span>   条件列表 ; <span class="hljs-comment">-- 条件列表：意味着可以有多个条件</span><br></code></pre></td></tr></table></figure>
+
+
+
+<p>学习条件查询就是学习条件的构建方式，而在SQL语句当中构造条件的运算符分为两类：</p>
+<ul>
+<li>比较运算符</li>
+<li>逻辑运算符</li>
+</ul>
+<p>常用的比较运算符如下: </p>
+<table>
+<thead>
+<tr>
+<th>比较运算符</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>&gt;</td>
+<td>大于</td>
+</tr>
+<tr>
+<td>&gt;&#x3D;</td>
+<td>大于等于</td>
+</tr>
+<tr>
+<td>&lt;</td>
+<td>小于</td>
+</tr>
+<tr>
+<td>&lt;&#x3D;</td>
+<td>小于等于</td>
+</tr>
+<tr>
+<td>&#x3D;</td>
+<td>等于</td>
+</tr>
+<tr>
+<td>&lt;&gt; 或 !&#x3D;</td>
+<td>不等于</td>
+</tr>
+<tr>
+<td>between … and …</td>
+<td>在某个范围之内(含最小、最大值)</td>
+</tr>
+<tr>
+<td>in(…)</td>
+<td>在in之后的列表中的值，多选一</td>
+</tr>
+<tr>
+<td>like 占位符</td>
+<td>模糊匹配(_匹配单个字符, %匹配任意个字符)</td>
+</tr>
+<tr>
+<td>is null</td>
+<td>是null</td>
+</tr>
+</tbody></table>
+<p>常用的逻辑运算符如下:</p>
+<table>
+<thead>
+<tr>
+<th>逻辑运算符</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>and 或 &amp;&amp;</td>
+<td>并且 (多个条件同时成立)</td>
+</tr>
+<tr>
+<td>or 或 ||</td>
+<td>或者 (多个条件任意一个成立)</td>
+</tr>
+<tr>
+<td>not 或 !</td>
+<td>非 , 不是</td>
+</tr>
+</tbody></table>
+<p>注意：查询为NULL的数据时，不能使用 <code>= null</code> 或 <code>！=null</code> 。得使用 <code>is null</code> 或 <code>is not null</code>。</p>
+<ul>
+<li>聚合函数</li>
+</ul>
+<p>之前我们做的查询都是横向查询，就是根据条件一行一行的进行判断，而使用聚合函数查询就是纵向查询，它是对一列的值进行计算，然后返回一个结果值。（将一列数据作为一个整体，进行纵向计算）</p>
+<p>常用聚合函数：</p>
+<table>
+<thead>
+<tr>
+<th>函数</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>count</td>
+<td>统计数量</td>
+</tr>
+<tr>
+<td>max</td>
+<td>最大值</td>
+</tr>
+<tr>
+<td>min</td>
+<td>最小值</td>
+</tr>
+<tr>
+<td>avg</td>
+<td>平均值</td>
+</tr>
+<tr>
+<td>sum</td>
+<td>求和</td>
+</tr>
+</tbody></table>
+<p>注意 : 聚合函数会忽略空值，对NULL值不作为统计。</p>
+<ul>
+<li>分组查询（group by）</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">select</span>  字段列表  <span class="hljs-keyword">from</span>  表名  [<span class="hljs-keyword">where</span> 条件]  <span class="hljs-keyword">group</span> <span class="hljs-keyword">by</span> 分组字段名  [<span class="hljs-keyword">having</span> 分组后过滤条件];<br></code></pre></td></tr></table></figure>
+
+<p>分组之后，查询的字段一般为聚合函数和分组字段，查询其他字段无任何意义</p>
+<p>执行顺序：where &gt; 聚合函数 &gt; having </p>
+<p>执行时机不同：where是分组之前进行过滤，不满足where条件，不参与分组；而having是分组之后对结果进行过滤。</p>
+<p>判断条件不同：where不能对聚合函数进行判断，而having可以。</p>
+<ul>
+<li>排查查询</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">select</span>  字段列表  <br><span class="hljs-keyword">from</span>   表名   <br>[<span class="hljs-keyword">where</span>  条件列表] <br>[<span class="hljs-keyword">group</span> <span class="hljs-keyword">by</span>  分组字段 ] <br><span class="hljs-keyword">order</span>  <span class="hljs-keyword">by</span>  字段<span class="hljs-number">1</span>  排序方式<span class="hljs-number">1</span> , 字段<span class="hljs-number">2</span>  排序方式<span class="hljs-number">2</span> … ;<br></code></pre></td></tr></table></figure>
+
+<p>排序方式：</p>
+<p>ASC ：升序（默认值）</p>
+<p>DESC：降序</p>
+<ul>
+<li>分页查询（limit）</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">select</span>  字段列表  <span class="hljs-keyword">from</span>  表名  limit  起始索引, 查询记录数 ;<br></code></pre></td></tr></table></figure>
+
+<ol>
+<li>起始索引从0开始。           计算公式 ：起始索引 &#x3D; （查询页码 - 1）* 每页显示记录数</li>
+<li>分页查询是数据库的方言，不同的数据库有不同的实现，MySQL中是LIMIT</li>
+<li>如果查询的是第一页数据，起始索引可以省略，直接简写为 limit  条数</li>
+</ol>
+<h3 id="JDBC"><a href="#JDBC" class="headerlink" title="JDBC"></a>JDBC</h3><p><strong>就是使用Java语言操作关系型数据库的一套API</strong></p>
 
                 
               </div>
