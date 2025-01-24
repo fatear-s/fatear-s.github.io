@@ -27,7 +27,7 @@
 <meta property="og:description" content="JavaWeb介绍![image-20241209170002293](&#x2F;Users&#x2F;liutao&#x2F;Library&#x2F;Application Support&#x2F;typora-user-images&#x2F;image-20241209170002293.png) 技术栈 ![image-20241209170130894](&#x2F;Users&amp;#">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2024-12-09T08:53:27.000Z">
-<meta property="article:modified_time" content="2025-01-10T13:47:15.912Z">
+<meta property="article:modified_time" content="2025-01-22T11:11:04.134Z">
 <meta property="article:author" content="Fatear">
 <meta name="twitter:card" content="summary_large_image">
   
@@ -237,7 +237,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          4.8k 字
+          5.7k 字
         
       </span>
     
@@ -248,7 +248,7 @@
         
         
         
-          40 分钟
+          48 分钟
         
       </span>
     
@@ -806,6 +806,79 @@
 <li>如果查询的是第一页数据，起始索引可以省略，直接简写为 limit  条数</li>
 </ol>
 <h3 id="JDBC"><a href="#JDBC" class="headerlink" title="JDBC"></a>JDBC</h3><p><strong>就是使用Java语言操作关系型数据库的一套API</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">//获取连接</span><br><span class="hljs-comment">//创建预编译的PreparedStatement对象</span><br><span class="hljs-comment">//设置预编译参数</span><br><span class="hljs-comment">//执行语句</span><br><span class="hljs-comment">//处理结果</span><br><span class="hljs-comment">//释放资源</span><br></code></pre></td></tr></table></figure>
+
+
+
+<p>ResultSet（结果集对象）：封装了DQL查询语句查询的结果。</p>
+<ul>
+<li><p>next()：将光标从当前位置向前移动一行，并判断当前行是否为有效行，返回值为boolean。</p>
+<ul>
+<li>true：有效行，当前行有数据</li>
+<li>false：无效行，当前行没有数据</li>
+</ul>
+</li>
+<li><p>getXxx(…)：获取数据，可以根据列的编号获取，也可以根据列名获取（推荐）。</p>
+</li>
+<li><p>预编译SQL（参数动态传递）</p>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs Java">conn.prepareStatement(<span class="hljs-string">&quot;SELECT * FROM user WHERE username = ? AND password = ?&quot;</span>);<br>pstmt.setString(<span class="hljs-number">1</span>, <span class="hljs-string">&quot;daqiao&quot;</span>);<br>pstmt.setString(<span class="hljs-number">2</span>, <span class="hljs-string">&quot;123456&quot;</span>);<br><span class="hljs-type">ResultSet</span> <span class="hljs-variable">resultSet</span> <span class="hljs-operator">=</span> pstmt.executeQuery();<br></code></pre></td></tr></table></figure>
+
+<p>执行语句</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-type">ResultSet</span> <span class="hljs-variable">rs</span> <span class="hljs-operator">=</span> pstmt.executeQuery();<br><span class="hljs-type">int</span> <span class="hljs-variable">rowsUpdated</span> <span class="hljs-operator">=</span> pstmt.executeUpdate();<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>JDBC程序执行DML语句：int rowsUpdated &#x3D; pstmt.executeUpdate();  &#x2F;&#x2F;返回值是影响的记录数</li>
+<li>JDBC程序执行DQL语句：ResultSet resultSet &#x3D; pstmt.executeQuery(); &#x2F;&#x2F;返回值是查询结果集</li>
+</ul>
+<h4 id="Mybatis"><a href="#Mybatis" class="headerlink" title="Mybatis"></a>Mybatis</h4><h3 id="项目实战"><a href="#项目实战" class="headerlink" title="项目实战"></a>项目实战</h3><h4 id="部门管理"><a href="#部门管理" class="headerlink" title="部门管理"></a>部门管理</h4><p>安装Apifox</p>
+<h4 id="限制请求方式"><a href="#限制请求方式" class="headerlink" title="限制请求方式"></a>限制请求方式</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@RequestMapping(value = &quot;/dept&quot;,method = RequestMethod.GET)</span><br><span class="hljs-meta">@Getmapping()</span><br></code></pre></td></tr></table></figure>
+
+<h4 id="数据封装"><a href="#数据封装" class="headerlink" title="数据封装"></a>数据封装</h4><ul>
+<li><p>实体类属性名和数据库表查询返回的字段名一致，mybatis会自动封装。</p>
+</li>
+<li><p>如果实体类属性名和数据库表查询返回的字段名不一致，不能自动封装。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Results(&#123;@Result(column = &quot;create_time&quot;, property = &quot;createTime&quot;),</span><br><span class="hljs-meta">          @Result(column = &quot;update_time&quot;, property = &quot;updateTime&quot;)&#125;)</span><br><span class="hljs-meta">@Select(&quot;select id, name, create_time, update_time from dept&quot;)</span><br><span class="hljs-keyword">public</span> List&lt;Dept&gt; <span class="hljs-title function_">findAll</span><span class="hljs-params">()</span>;<br></code></pre></td></tr></table></figure>
+
+<h4 id="Nginx"><a href="#Nginx" class="headerlink" title="Nginx"></a>Nginx</h4><h5 id="反向代理"><a href="#反向代理" class="headerlink" title="反向代理"></a>反向代理</h5><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs">  <br></code></pre></td></tr></table></figure>
+
+<p>nginx项目安装并配置</p>
+<p>nginx项目迁移</p>
+<p>mac中的nginx项目需要修改root路径(M1芯片),因为全局路径不同.</p>
+<p>windows项目放入到mac中，需要放置在NGINX安装目录下，才能够运行正确(暂时不知道原因)</p>
+<p>NGINX项目测试</p>
+<p>注意浏览器缓存(关闭nginx代理仍然能够访问)</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs Java"><br><br><br><span class="hljs-meta">@GetMapping</span><br><br><span class="hljs-meta">@PostMapping</span><br><br><span class="hljs-meta">@PutMapping</span><br><br><span class="hljs-meta">@DeleteMapping</span> = <span class="hljs-meta">@RequestMapping(method = RequestMethod.DELETE)</span><br><br><span class="hljs-meta">@PatchMapping</span><br><br></code></pre></td></tr></table></figure>
+
+<h4 id="删除部门"><a href="#删除部门" class="headerlink" title="删除部门"></a>删除部门</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">//mapper</span><br><span class="hljs-meta">@Delete(&quot;delete from dept where id =#&#123;id&#125;&quot;)</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">deleteById</span><span class="hljs-params">(Integer id)</span>;<br><br><span class="hljs-comment">//service，新增接口方法，实现</span><br><span class="hljs-comment">//controller</span><br><span class="hljs-meta">@DeleteMapping(&quot;/depts&quot;)</span><br><br></code></pre></td></tr></table></figure>
+
+<h4 id="新增部门"><a href="#新增部门" class="headerlink" title="新增部门"></a>新增部门</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">//mapper</span><br><span class="hljs-meta">@Insert(&quot;insert into dept(name,create_time,update_time) values(#&#123;name&#125;,#&#123;createTime&#125;,#&#123;updateTime&#125;)&quot;)</span><br><span class="hljs-keyword">void</span> <span class="hljs-title function_">insert</span><span class="hljs-params">(Dept)</span><br><span class="hljs-comment">//service,补全参数</span><br><br><br><span class="hljs-comment">//controller</span><br><span class="hljs-meta">@Postmapping(&quot;/depts&quot;)</span><br><br></code></pre></td></tr></table></figure></li>
+</ul>
+<h4 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h4><p>中文不适配，添加挥着修改是中文字符会产生错误</p>
+<h4 id="修改部门"><a href="#修改部门" class="headerlink" title="修改部门"></a>修改部门</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">//回显</span><br><span class="hljs-comment">//mapper</span><br><span class="hljs-meta">@Select()</span><br><br><span class="hljs-comment">//service实现，</span><br><br><span class="hljs-comment">//controller</span><br><span class="hljs-meta">@GetMapping(&quot;/depts/&#123;id&#125;&quot;)</span><br><span class="hljs-keyword">public</span> Result <span class="hljs-title function_">getById</span><span class="hljs-params">(<span class="hljs-meta">@PathVariable(&quot;id&quot;)</span> Integer id)</span> &#123;&#125;<br><br><span class="hljs-comment">//修改</span><br><span class="hljs-comment">//mapper</span><br><br><span class="hljs-meta">@Update(&quot;update dept set name = #&#123;name&#125;,update_time = #&#123;updateTime&#125; where id = #&#123;id&#125;&quot;)</span><br><span class="hljs-keyword">void</span> <span class="hljs-title function_">update</span><span class="hljs-params">(Dept dept)</span>;<br><br><span class="hljs-comment">//service,补全</span><br><br><span class="hljs-comment">//contoller</span><br><span class="hljs-meta">@PutMapping(&quot;/depts&quot;)</span><br><br><br></code></pre></td></tr></table></figure>
+
+
+
+<h4 id="SQL的XML的配置"><a href="#SQL的XML的配置" class="headerlink" title="SQL的XML的配置"></a>SQL的XML的配置</h4><p><strong>在Mybatis中使用XML映射文件方式开发，需要符合一定的规范：</strong></p>
+<ol>
+<li>XML映射文件的名称与Mapper接口名称一致，并且将XML映射文件和Mapper接口放置在相同包下（同包同名）</li>
+<li>XML映射文件的namespace属性为Mapper接口全限定名一致</li>
+<li>XML映射文件中sql语句的id与Mapper接口中的方法名一致，并保持返回类型一致。</li>
+<li><strong>注意：一个接口方法对应的SQL语句，要么使用注解配置，要么使用XML配置，切不可同时配置。</strong></li>
+</ol>
+<h4 id="动态SQL"><a href="#动态SQL" class="headerlink" title="动态SQL"></a>动态SQL</h4><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">where</span>&gt;</span><br>       <span class="hljs-tag">&lt;<span class="hljs-name">if</span> <span class="hljs-attr">test</span>=<span class="hljs-string">&quot;name != null and name != &#x27;&#x27;&quot;</span>&gt;</span><br>           e.name like concat(&#x27;%&#x27;,#&#123;name&#125;,&#x27;%&#x27;)<br>       <span class="hljs-tag">&lt;/<span class="hljs-name">if</span>&gt;</span><br>       <span class="hljs-tag">&lt;<span class="hljs-name">if</span> <span class="hljs-attr">test</span>=<span class="hljs-string">&quot;gender != null&quot;</span>&gt;</span><br>           and e.gender = #&#123;gender&#125;<br>       <span class="hljs-tag">&lt;/<span class="hljs-name">if</span>&gt;</span><br>       <span class="hljs-tag">&lt;<span class="hljs-name">if</span> <span class="hljs-attr">test</span>=<span class="hljs-string">&quot;begin != null and end != null&quot;</span>&gt;</span><br>           and e.entry_date between #&#123;begin&#125; and #&#123;end&#125;<br>       <span class="hljs-tag">&lt;/<span class="hljs-name">if</span>&gt;</span><br>   <span class="hljs-tag">&lt;/<span class="hljs-name">where</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+
+
+<h4 id="Error"><a href="#Error" class="headerlink" title="Error"></a>Error</h4><p>连接，mapper 中写的变量名才是传入到mapper.xml中的变量</p>
+<h4 id="事务"><a href="#事务" class="headerlink" title="事务"></a>事务</h4><p>@Transactional</p>
+<h4 id="默认情况下，只有出现RuntimeException-运行时异常-才会回滚事务"><a href="#默认情况下，只有出现RuntimeException-运行时异常-才会回滚事务" class="headerlink" title="默认情况下，只有出现RuntimeException(运行时异常)才会回滚事务"></a><strong>默认情况下，只有出现RuntimeException(运行时异常)才会回滚事务</strong></h4><p>rollbackFor 指定何种error回滚</p>
+<p>propagation</p>
+<ul>
+<li><strong>REQUIRED：</strong>大部分情况下都是用该传播行为即可。</li>
+<li><strong>REQUIRES_NEW：</strong>当我们不希望事务之间相互影响时，可以使用该传播行为。比如：下订单前需要记录日志，不论订单保存成功与否，都需要保证日志记录能够记录成功。</li>
+</ul>
 
                 
               </div>
